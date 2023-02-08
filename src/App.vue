@@ -1,7 +1,15 @@
-<script setup></script>
-
 <template>
-	<main>main</main>
+	<div>
+		<TheHeader></TheHeader>
+		<TheView></TheView>
+	</div>
 </template>
 
-<style scoped></style>
+<script setup>
+import TheHeader from '@/layout/TheHeader.vue';
+import TheView from '@/layout/TheView.vue';
+</script>
+
+<style scoped>
+
+</style>
