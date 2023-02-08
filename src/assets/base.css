@@ -76,3 +76,10 @@ body {
 }
 
 header {background:#fff; border-bottom:1px solid #E4E4E4}
+
+/* Portfolio */
+.card-lists {margin:0 auto}
+.card-lists .card {max-height:222px; cursor:pointer}
+.card-lists .card .card-img {position:relative; padding-top:calc((135*100%) / 220); overflow:hidden}
+.card-lists .card .card-img img {position:absolute; top:0; width:100%;}
+.card-lists .card .card-title {font-size:.9rem}
