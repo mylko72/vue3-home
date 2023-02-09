@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainView from '@/views/MainView.vue';
 import AboutView from '@/views/AboutView.vue';
-import PortfolioView from '@/views/PortfolioView.vue';
+import PortfolioListView from '@/views/PortfolioListView.vue';
+import PortfolioDetailView from '@/views/PortfolioDetailView.vue';
 import LabView from '@/views/LabView.vue';
 import BookMarkView from '@/views/BookMarkView.vue';
 
@@ -18,8 +19,13 @@ const routes = [
 	},
 	{
 		path: '/portfolio',
-		name: 'PortfolioView',
-		component: PortfolioView,
+		name: 'PortfolioListView',
+		component: PortfolioListView,
+	},
+	{
+		path: '/portfolio/:id',
+		name: 'PortfolioDetailView',
+		component: PortfolioDetailView,
 	},
 	{
 		path: '/lab',
