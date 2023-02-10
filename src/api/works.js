@@ -20,10 +20,10 @@ const works = [
   {
     "project": "삼성SDS 인적자원 Visibility 강화과제",
     "thumbnail": "/src/assets/images/img_sds_s.jpg",
-    "images" : [],
+    "images" : ['/src/assets/images/img_sds_s.png'],
     "client": "삼성SDS",
     "date": "2020.06 ~ 2021.06",
-    "desc": "Vue.js 프레임워크를 이용한 SFA 구축"
+    "desc": "교육과 인사 시스템을 Vue.js 플랫폼을 활용하여 고도화 및 구축"
   },
   {
     "project": " 신라면세점 운영 및 서비스 구축",
