@@ -6,10 +6,14 @@
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
 					<WorkItem 
 						display="card-thumb"
-						:thumbnail="card.thumbnail"
 						:project="card.project"
 						:date="card.date"
 						@click="goDetail(index)">
+						<template #card-image>
+								<div class="card-img">
+									<img :src="card.thumbnail" class="card-img-top" alt="...">
+								</div>
+							</template>
 					</WorkItem>
 				</div>
 			</div>

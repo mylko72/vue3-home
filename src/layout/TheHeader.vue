@@ -4,7 +4,7 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <h1>LKO</h1>
+            <h1>LeeKwanOh</h1>
           </a>
           <button
             class="navbar-toggler"

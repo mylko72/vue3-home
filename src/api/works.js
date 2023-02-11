@@ -3,6 +3,7 @@ const works = [
     "project": "삼성물산 패션몰 개선 및 운영",
     "thumbnail": "/src/assets/images/img_ssfshop_s.jpg",
     "images": ['/src/assets/images/img_ssfshop_01.jpg','/src/assets/images/img_ssfshop_02.jpg'],
+    "company": "웨이브",
     "client": "삼성물산",
     "date": "2022.06 ~ 2022.12",
     "desc": "메인 및 공통 UI(레이아웃 및 검색) 개선, 기획전 및 상품상세 개선, Git을 이용한 버전 관리",
