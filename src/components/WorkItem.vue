@@ -1,11 +1,11 @@
 <template>
-  <div class="card" :class="workType">
+  <div class="card" :class="viewType">
     <slot name="card-header" />
     <slot name="card-image" />
 
     <div class="card-body">
       <p class="card-title text-truncate">
-        <span class="badge" v-if="badge">{{ workType == 'card-default' ? "프로젝트명" : 'Project' }}</span> 
+        <span class="badge" v-if="badge">{{ viewType == 'card-default' ? "프로젝트명" : 'Project' }}</span> 
         <span class="text-truncate">{{ project }}</span>
       </p>
       <p class="card-text" v-if="client">
@@ -13,7 +13,7 @@
         <span class="text-muted">{{ client }}</span>
       </p>
       <p class="card-text" v-if="date">
-        <span class="badge" v-if="badge">{{ workType == 'card-default' ? "수행기간" : 'Date' }}</span> 
+        <span class="badge" v-if="badge">{{ viewType == 'card-default' ? "수행기간" : 'Date' }}</span> 
         <span class="text-muted">{{ date }}</span>
       </p>
       <p class="card-text" v-if="url">
@@ -34,11 +34,10 @@
 
 <script setup>
 import { ref } from "@vue/reactivity";
-
-const workType = ref(null);
+import { computed } from "@vue/runtime-core";
 
 const props = defineProps({
-  display: String,
+  view: String,
   badge: Boolean,
   project: {
     type: String,
@@ -53,9 +52,9 @@ const props = defineProps({
   desc: String
 });
 
-workType.value = props.display;
-
-console.log(workType.value);
+const viewType = computed(() => {
+  return props.view;
+});
 </script>
 
 <style lang="scss" scoped>

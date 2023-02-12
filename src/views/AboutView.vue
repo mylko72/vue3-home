@@ -1,29 +1,31 @@
 <template>
-	<div class="container py-5">
-    <h2>About Me</h2>			
-	</div>
-	<div class="my-history">
+	<div>
 		<div class="container py-5">
-			<h3>My History</h3>
-			<div class="row">
-				<div class="col-3"></div>
-				<div class="col-7">
-					<template v-for="(card, index) in cardItems" :key="index">
-						<WorkItem 
-							display="card-default"
-							:badge="show"
-							:project="card.project"
-							:url="card.url"
-							:date="card.date"
-							:task="card.task"
-							:desc="card.desc">
-							<template #card-header>
-								<div class="card-header">
-									| {{ card.date }} / {{ card.company }}
-								</div>
-							</template>
-						</WorkItem>
-					</template>
+			<h2>About Me</h2>			
+		</div>
+		<div class="my-history">
+			<div class="container py-5">
+				<h3>My History</h3>
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-7">
+						<row v-for="(card, index) in cardItems" :key="index">
+							<WorkItem 
+								view="card-default"
+								:badge="show"
+								:project="card.project"
+								:url="card.url"
+								:date="card.date"
+								:task="card.task"
+								:desc="card.desc">
+								<template #card-header>
+									<div class="card-header">
+										| {{ card.date }} / {{ card.company }}
+									</div>
+								</template>
+							</WorkItem>
+						</row>
+					</div>
 				</div>
 			</div>
 		</div>

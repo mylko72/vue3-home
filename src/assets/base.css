@@ -105,10 +105,10 @@ header .navbar .nav-link.active {background-color:#e7e7e7; border-radius:4px;}
 .card-default .card-header {font-size:1.2rem; color:rgba(255,255,255,.7); font-weight:bold}
 .card-default .card-title {margin-bottom:0; font-size:1.2rem; color:#3c6382; font-weight:bold}
 .card-default .card-title .text-truncate {font-weight:bold}
-.card-default .card-title, .card-default .card-text {display:flex; align-items:baseline}
+.card-default .card-title, .card-default .card-text {display:flex; align-items:flex-start}
 .card-default .card-text {margin-bottom:0; font-size:1.1rem}
-.card-default .card-text .text-muted {width:calc(100% - 74px); color:#3c6382 !important}
-.card-default .badge {width:74px; margin-right:10px; border:1px solid #60a3bc; background:#60a3bc; font-size:0.8rem; color:rgba(255,255,255,.7)}
+.card-default .card-text .text-muted {width:calc(100% - 80px); color:#3c6382 !important}
+.card-default .badge {width:80px; margin-top:3px; margin-right:10px; border:1px solid #60a3bc; background:#60a3bc; font-size:0.8rem; color:rgba(255,255,255,.7)}
 
 
 

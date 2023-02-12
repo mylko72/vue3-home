@@ -7,7 +7,7 @@
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
 					<template v-if="index <= 5">
 						<WorkItem 
-							display="card-list"
+							view="card-list"
 							:badge="show"
 							:project="card.project"
 							:client="card.client"
