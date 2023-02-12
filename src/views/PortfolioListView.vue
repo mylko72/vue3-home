@@ -2,7 +2,21 @@
 	<div class="container py-5">
 		<div class="card-lists col-xl-12 col-xxl-11">
 			<h2>Portfolio</h2>			
-			<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-xl-4 my-4">
+			<div class="d-flex">
+				<div class="ms-auto">
+					<div class="btn-group">
+						<button type="button" class="btn btn-outline-secondary" @click="changeView('card-list')">
+							<i class="bi bi-card-list"></i>
+							<span class="visually-hidden">리스트</span>
+						</button>
+						<button type="button" class="btn btn-outline-secondary active" @click="changeView('card-thumb')">
+							<i class="bi bi-card-image"></i>
+							<span class="visually-hidden">썸네일</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-xl-4 my-2">
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
 					<WorkItem 
 						display="card-thumb"
@@ -11,7 +25,8 @@
 						@click="goDetail(index)">
 						<template #card-image>
 								<div class="card-img">
-									<img :src="card.thumbnail" class="card-img-top" alt="...">
+									<img v-if="card.thumbnail" :src="card.thumbnail" class="card-img-top" alt="">
+									<img v-else src="/src/assets/images/img_no.png" class="card-img-top no-img" alt="">
 								</div>
 							</template>
 					</WorkItem>
@@ -33,11 +48,13 @@ import { useRouter } from 'vue-router';
 import WorkItem from '@/components/WorkItem.vue';
 
 const cardItems = ref([]);
+const thumbnail = ref(null);
 const isAlert = ref(false);
 
 const fetchWorks = async () => {
 	try {
 		cardItems.value = await getWorks();
+		// thumbnail.value = card.thumbnail ? card.thumbnail : '@/assets/images/img_no.png';
 		console.log(cardItems.value);
 	}catch(e){
 		console.log(e.message);

@@ -14,9 +14,13 @@
 							:badge="show"
 							:project="card.project"
 							:url="card.url"
+							:date="card.date"
+							:task="card.task"
 							:desc="card.desc">
 							<template #card-header>
-								{{ card.date }} {{ card.company }}
+								<div class="card-header">
+									| {{ card.date }} / {{ card.company }}
+								</div>
 							</template>
 						</WorkItem>
 					</template>

@@ -5,24 +5,28 @@
 
     <div class="card-body">
       <p class="card-title text-truncate">
-        <span class="badge" v-if="badge">Project</span> 
+        <span class="badge" v-if="badge">{{ workType == 'card-default' ? "프로젝트명" : 'Project' }}</span> 
         <span class="text-truncate">{{ project }}</span>
       </p>
       <p class="card-text" v-if="client">
-        <span class="badge" v-if="badge">client</span> 
-        <span class="date text-muted">{{ client }}</span>
+        <span class="badge" v-if="badge">Client</span> 
+        <span class="text-muted">{{ client }}</span>
       </p>
       <p class="card-text" v-if="date">
-        <span class="badge" v-if="badge">date</span> 
-        <span class="date text-muted">{{ date }}</span>
+        <span class="badge" v-if="badge">{{ workType == 'card-default' ? "수행기간" : 'Date' }}</span> 
+        <span class="text-muted">{{ date }}</span>
       </p>
       <p class="card-text" v-if="url">
-        <span class="badge" v-if="badge">url</span> 
-        <a :href="url" class="d-inline-block text-truncate" target="_blank"><span class="date text-muted">{{ url }}</span></a>
+        <span class="badge" v-if="badge">Url</span> 
+        <a :href="url" class="d-inline-block text-truncate" target="_blank"><span class="text-muted">{{ url }}</span></a>
+      </p>
+      <p class="card-text" v-if="task">
+        <span class="badge" v-if="badge">담당업무</span> 
+        <span class="text-muted">{{ task }}</span>
       </p>
       <p class="card-text" v-if="desc">
         <span class="badge" v-if="badge">수행내용</span> 
-        <span class="date text-muted">{{ desc }}</span>
+        <span class="desc text-muted">{{ desc }}</span>
       </p>
     </div>
   </div>
@@ -45,6 +49,7 @@ const props = defineProps({
   },
   client: String,
   url: String,
+  task: String,
   desc: String
 });
 

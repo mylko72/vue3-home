@@ -15,7 +15,8 @@
 							:date="card.date">
 							<template #card-image>
 								<div class="card-img">
-									<img :src="card.thumbnail" class="card-img-top" alt="...">
+									<img v-if="card.thumbnail" :src="card.thumbnail" @click="goDetail(index)" class="card-img-top" alt="">
+									<img v-else src="/src/assets/images/img_no.png" class="card-img-top no-img" alt="">
 								</div>
 							</template>
 						</WorkItem>
@@ -30,9 +31,11 @@
 import { ref } from "@vue/reactivity";
 import { getWorks } from '@/api/works';
 import WorkItem from '@/components/WorkItem.vue';
+import { useRouter } from "vue-router";
 
 const cardItems = ref([]);
 const show = ref(false);
+const router = useRouter();
 
 const fetchWorks = async () => {
 	try {
@@ -46,6 +49,12 @@ const fetchWorks = async () => {
 
 fetchWorks();
 
+const goDetail = (id) => {
+	if(!cardItems.value[id].images.length){
+		return false;
+	} 
+	router.push({ name:  'PortfolioDetailView', params: { id }});
+}
 
 </script>
 
