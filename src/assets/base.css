@@ -84,6 +84,16 @@ header .navbar .nav-item {margin-right:6px;}
 header .navbar .nav-link {font-size:1.1rem}
 header .navbar .nav-link.active {background-color:#e7e7e7; border-radius:4px;}
 
+.my-ability {margin-bottom:60px; background-color:#d4ecfc; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:20px 0;}
+.my-ability .circle {width:200px; height:200px; margin:0 auto; background-color:#f5f5f5; border:1px solid #23bdc2; -webkit-border-radius:100px; -moz-border-radius:100px; border-radius:100px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; text-align:center;transform:scale(0);opacity:0;transition: opacity 500ms ease 0s, transform 500ms ease 0s;}
+.my-ability .circle > i {margin-bottom:5px; font-size:4em; color:#A8D4D8;}
+.my-ability .circle p {margin:0; font-family:'Oswald'; font-size:1.1em; color:#000; line-height:140%;}
+.my-ability .row > div:nth-child(1) .circle {transition-delay: 0s;}
+.my-ability .row > div:nth-child(2) .circle {transition-delay: .1s;}
+.my-ability .row > div:nth-child(3) .circle {transition-delay: .2s;}
+.my-ability .row > div:nth-child(4) .circle {transition-delay: .3s;}
+.my-ability.active .circle {transform:scale(1);opacity:1}
+
 /* Portfolio list */
 .card-lists {margin:0 auto}
 .card .card-img .no-img {width:auto; height:60%; top:50%; left:50%; transform:translate(-50%, -50%); opacity:.3;}
@@ -110,8 +120,6 @@ header .navbar .nav-link.active {background-color:#e7e7e7; border-radius:4px;}
 .card-default .card-text .text-muted {width:calc(100% - 80px); color:#3c6382 !important}
 .card-default .badge {width:80px; margin-top:3px; margin-right:10px; border:1px solid #60a3bc; background:#60a3bc; font-size:0.8rem; color:rgba(255,255,255,.7)}
 
-
-
 .v-alert {position:fixed; top:30vh; left:50%; min-width:500px; margin-left:-250px; text-align:center}
 
 /* Portfolio detail */
@@ -127,20 +135,36 @@ header .navbar .nav-link.active {background-color:#e7e7e7; border-radius:4px;}
 
 .my-key-visual {
 	height: 650px;
-	background-image: url(@/assets/images/img_about_01_min.jpeg);
+	background-image: url(@/assets/images/img_about_01-min.jpg);
 	background-position: 50% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 }
-.my-key-visual .rnd-bx {margin-top:70px; padding:20px; border-radius:20px; border:4px solid #ddd; background:rgba(255,255,255,.9);}
-.my-key-visual .rnd-bx h2 {margin-bottom:30px;}
-.my-key-visual .rnd-bx p {font-size:0.9rem; line-height:1.8em;}
-.my-key-visual .rnd-bx span {display:inline-block; padding:3px 5px; border-radius:5px;}
-.my-key-visual .rnd-bx span.red {background-color:#ff7373; font-size:1.2em; color:#fff; }
-.my-key-visual .rnd-bx span.blue {padding:5px 7px; background-color:#3E94D2; font-size:1.4em; color:#fff; }
-.my-key-visual .rnd-bx span.brown {background-color:#ff8B00; font-size:1.2em; color:#fff; }
-.my-key-visual .rnd-bx span.maroon {background-color:#85144B; font-size:1.2em; color:#fff; }
-.my-key-visual .rnd-bx span.green {background-color:#80E800; font-size:1.2em; color:#fff; }
+.about-me {position:relative; margin-top:-100px; background:rgba(184,233,148,.8)}
+.about-me h2 {padding-top:30px; padding-bottom:50px;}
+.about-me p {font-size:0.9rem; line-height:1.8em;}
+.about-me span {display:inline-block; padding:3px 5px; border-radius:5px;}
+.about-me span.red {background-color:#ff7373; font-size:1.2em; color:#fff; }
+.about-me span.blue {padding:5px 7px; background-color:#3E94D2; font-size:1.4em; color:#fff; }
+.about-me span.brown {background-color:#ff8B00; font-size:1.2em; color:#fff; }
+.about-me span.maroon {background-color:#85144B; font-size:1.2em; color:#fff; }
+.about-me span.green {background-color:#55c05b; font-size:1.2em; color:#fff; }
+.about-me .ico-bicycle {position:absolute; bottom:-110%; right:0; font-size:35em; opacity:.1;}
+
+.my-skill {background-color:#6a89cc; color:#fff; overflow:hidden}
+.my-skill .container {position:relative}
+.my-skill h3 {display:inline-block; padding:60px 20px 20px; font-size:1.2rem; border:4px solid #fff; border-top:none; border-radius:0 0 10px 10px}
+.my-skill .ico-skill {position:absolute; left:-2vw; font-size:24em; opacity:.1; animation:rotation 8s infinite linear;}
+.my-skill .skill-list {margin-top:-94px;}
+.my-skill .skill-list ul {margin:30px 0 0 10px;}
+.my-skill .skill-list ul li {margin-bottom:10px;}
 
 .my-history {background:#82ccdd;}
+.my-history .lists {margin-top:-40px}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -3,7 +3,7 @@
 		<div class="key-visual"></div>
 		<div class="container col-xl-12 col-xxl-11">
 			<h2 class="mt-5">Recent Works</h2>
-			<div class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4 my-4">
+			<div class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4 my-4 mb-5">
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
 					<template v-if="index <= 5">
 						<WorkItem 
@@ -24,6 +24,43 @@
 				</div>
 			</div>
 		</div>
+			<div class="my-ability active">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="circle">
+								<i class="bi bi-browser-chrome"></i>
+								<p>Web Standard</p>
+								<p>Web Accessibility</p>
+								<p>Cross Browsing</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="circle">
+								<i class="bi bi-filetype-html"></i>
+								<p>HTML5</p>
+								<p>CSS3</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="circle">
+								<i class="bi bi-file-earmark-code"></i>
+								<p>Javascript</p>
+								<p>Typescript</p>
+								<p>Vue.js</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="circle">
+								<i class="bi bi-phone"></i>
+								<p>Mobile</p>
+								<p>Responsive</p>
+								<p>Interactive</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</div>
 </template>
 
@@ -35,11 +72,12 @@ import { useRouter } from "vue-router";
 
 const cardItems = ref([]);
 const show = ref(false);
+const limit = 6;
 const router = useRouter();
 
-const fetchWorks = async () => {
+const fetchWorks = async (limit) => {
 	try {
-		cardItems.value = await getWorks();
+		cardItems.value = await getWorks(limit);
 		show.value = true;
 		console.log(cardItems.value);
 	}catch(e){
@@ -47,7 +85,7 @@ const fetchWorks = async () => {
 	}
 }
 
-fetchWorks();
+fetchWorks(limit);
 
 const goDetail = (id) => {
 	if(!cardItems.value[id].images.length){

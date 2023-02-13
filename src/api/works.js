@@ -374,8 +374,8 @@ const works = [
 
 ];
 
-export function getWorks(){
-  return works;
+export function getWorks(limit){
+  return limit ? works.slice(0, limit) : works;
 }
 
 export function getWorksById(id){
