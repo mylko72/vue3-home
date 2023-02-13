@@ -49,13 +49,15 @@ const workItem = ref({
 const route = useRoute();
 const router = useRouter();
 const workId = route.params.id;
+const queryInfo = ref(null);
 const isLoading = ref(null);
 
 const fetchItem = async (id) => {
   try {
     isLoading.value = false;
     workItem.value = await getWorksById(id);
-    console.log(workItem.value.url)
+    // console.log(workItem.value.url)
+    queryInfo.value = route.query;
     isLoading.value = true;
   }catch(e){
     console.log(e.message)
@@ -65,7 +67,8 @@ const fetchItem = async (id) => {
 fetchItem(workId);
 
 const goList = () => {
-  router.push({name: 'PortfolioListView'});
+  // window.history.go(-1);
+  router.push({name: 'PortfolioListView', query: queryInfo.value})
 }
 
 </script>

@@ -20,10 +20,10 @@
 				<div class="col" v-for="(card, index) in cardItems" :key="index">		
 					<WorkItem 
 						v-bind="workItems(card)"
-						@click="goDetail(index)">
+						@click="viewType === 'card-thumb' && goDetail(index, $event)">
 						<template #card-image>
 							<div class="card-img">
-								<img v-if="card.thumbnail" :src="card.thumbnail" class="card-img-top" alt="">
+								<img v-if="card.thumbnail" :src="card.thumbnail" @click="viewType === 'card-list' && goDetail(index)" class="card-img-top" alt="">
 								<img v-else src="/src/assets/images/img_no.png" class="card-img-top no-img" alt="">
 							</div>
 						</template>
@@ -42,7 +42,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { getWorks } from '@/api/works';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import WorkItem from '@/components/WorkItem.vue';
 
 const cardItems = ref([]);
@@ -51,12 +51,20 @@ const isActive = ref(null);
 const defaultType = ref(null);
 const thumbClass = ref(['row-cols-2', 'row-cols-md-3', 'row-cols-lg-4']);
 const listClass = ref(['row-cols-1', 'row-cols-lg-2']);
+const route = useRoute();
+
+const routeInfo = computed(() => {
+	return route.query.type;
+});
+
+console.log('routeInfo', routeInfo.value)
 
 const fetchWorks = async () => {
 	try {
 		cardItems.value = await getWorks();
-		defaultType.value = 'card-thumb';
-		isActive.value = true;
+		defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
+		isActive.value = routeInfo.value === 'card-list' ? false : true;
+		console.log(cardItems.value);
 	}catch(e){
 		console.log(e.message);
 	}
@@ -96,7 +104,7 @@ const workItems = (work) => {
 }
 
 const router = useRouter();
-const goDetail = (id) => {
+const goDetail = (id, $event) => {
 	if(!cardItems.value[id].images.length){
 		isAlert.value = true;
 		setTimeout(() => {
@@ -104,7 +112,7 @@ const goDetail = (id) => {
 		}, 2000)
 		return false;
 	} 
-	router.push({ name:  'PortfolioDetailView', params: { id }});
+	router.push({ name:  'PortfolioDetailView', params: { id }, query:{ type: viewType.value } });
 }
 
 </script>
