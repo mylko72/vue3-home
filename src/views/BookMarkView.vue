@@ -1,9 +1,9 @@
 <template>
 	<div class="container py-5">
-		<div class="col-xl-12 col-xxl-11">
+		<div class="col-xl-12 col-xxl-11 mx-auto">
 			<h2 class="mb-4">Bookmark</h2>			
 			<div class="row">
-				<div class="col-lg-2 css-shapes-preview">
+				<div class="col-md-1 col-lg-2 css-shapes-preview">
 					<ul class="bookmark-menu">
 						<li v-for="(name, index) in bookmarkKeys" :key="index">
 							<a href="#" @click.prevent="goScroll(name)">{{ name }}</a>
@@ -11,8 +11,8 @@
 						<!-- <li><a href="#bookmark2">Vue</a></li> -->
 					</ul>
 				</div>
-				<div class="col-lg-9 bookmark-list ms-auto">
-					<div class="row" v-for="(value, key) in bookmarkLists">
+				<div class="col-sm-11 col-md-8 col-lg-9 bookmark-list ms-auto">
+					<div class="col" v-for="(value, key, index) in bookmarkLists" :key="index">
 						<h3 :id="key.split('.')[0].toLowerCase()"><i class="bi bi-bookmark me-1"></i> <em>{{ key }}</em></h3>
 						<ul class="lists">
 							<li v-for="(list, index) in value" :key="index">

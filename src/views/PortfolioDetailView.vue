@@ -12,7 +12,7 @@
         </div>
         <hr />
         <div class="row flex-column flex-md-row mt-4 g-3">
-          <div class="col-12 col-md-7 col-lg-8">
+          <div class="col-12 col-md-7 col-lg-8 text-center">
               <img v-for="(image, index) in workItem.images" :key="index" :src="image" class="img-fluid" :class="{ 'mt-4' : index > 0 }" alt="" />
           </div>
           <div class="col-12 col-md-5 col-lg-4">

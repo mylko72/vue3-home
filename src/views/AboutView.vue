@@ -49,7 +49,7 @@
 							<li>SASS</li>
 						</ul>
 					</div>
-					<div class="col-xs-8 col-sm-4 col-md-3 skill-list">
+					<div class="col-xs-8 col-sm-4 col-md-4 col-lg-4 skill-list">
 						<h3>Front End Develpement</h3>
 						<ul>
 							<li>Vue.js</li>

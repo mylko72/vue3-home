@@ -138,7 +138,7 @@ footer .nav-link {color:#fff}
 /* default type */
 .card-default {margin-bottom:2.5rem; border:none; background-color:transparent;}
 .card-default .card-header {font-size:1.2rem; color:rgba(255,255,255,.7); font-weight:bold}
-.card-default .card-title {margin-bottom:0; font-size:1.2rem; color:#3c6382; font-weight:bold}
+.card-default .card-title {margin-bottom:0; font-size:1.1rem; color:#3c6382; font-weight:bold}
 .card-default .card-title .text-truncate {font-weight:bold}
 .card-default .card-title, .card-default .card-text {display:flex; align-items:flex-start}
 .card-default .card-text {margin-bottom:0; font-size:1.1rem}
@@ -188,14 +188,14 @@ footer .nav-link {color:#fff}
 .my-history {margin-bottom:-80px; background:#82ccdd;}
 .my-history .lists {margin-top:-40px}
 
-.css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
+.css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:15px; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
 .bookmark-menu {position:absolute; left:-90px; top:10px; width:175px; padding-left:0}
 .bookmark-menu > li {padding-left:14px; border-bottom:1px dotted #FF746C; font-size:1rem; line-height:250%; color:#fff; -webkit-transition:all .5s ease;}
 .bookmark-menu > li.sel {border: 0px solid #ff0000; border-radius: 5px; background-color:#bf0000; transform:scale(1.4); }
 .bookmark-menu > li.unsel {transform:scale(0.9);}
 .bookmark-menu > li:last-child {border-bottom:none;}
 
-.bookmark-list h3 {display:inline-flex; align-items:center; min-width:120px; max-width:fit-content; padding:6px 10px; border-radius:4px 4px 0 0; background-color:#000; font-size:1.17em; font-style:normal; color:#fff}
+.bookmark-list h3 {display:inline-flex; align-items:center; min-width:120px; max-width:fit-content; padding:6px 10px 8px; border-radius:4px 4px 0 0; background-color:#000; font-size:1.17em; font-style:normal; color:#fff}
 .bookmark-list .lists {margin-bottom:50px; padding-left:0}
 .bookmark-list .lists li {display:flex; padding:25px 40px 20px 20px;}
 .bookmark-list .lists li:nth-child(odd) {background-color:#f9f9f9;}
@@ -210,9 +210,37 @@ footer .nav-link {color:#fff}
 .bookmark-list .lists li em {font-style:normal; font-weight:bold;}
 .bookmark-list .lists li a {font-family: 'Oswald','Nanum Gothic', Dotum; color:#FF851B; font-weight:normal; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
 
+.img-cover {text-align:center}
+.img-cover .inner {display:inline-block; border:4px solid #e5e5e5; border-radius:10px; overflow:hidden}
+.img-cover figcaption {margin-top:10px; font-size:12px; }
+.img-cover figcaption a {color:darkcyan}
+
+.toy-project {margin:30px auto 0}
+.toy-project .conts {padding:50px 50px}
+.toy-project .conts h3 {margin-bottom:20px}
+.toy-project .conts > p {font-size:.9em; line-height:24px;}
 
 @keyframes rotation {
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 576px) {
+  .my-skill .skill-list {margin-top:40px}
+  .my-skill h3 {padding:20px; border-top:4px solid #fff; border-radius:10px}
+}
+
+@media (max-width: 768px) {
+  .css-shapes-preview {width:calc(100% - 30px); height:320px; border:none; margin-bottom:50px; padding:20px 30px; background: #FF4136; border-radius:20px}
+  .bookmark-menu {position:relative; left:0; width:100%; display:flex; flex-wrap:wrap;}
+  .bookmark-menu li {width:50%; flex-basis:50%;}
+  .bookmark-list .lists li h4 {width:150px; flex:0 0 150px}
+  .bookmark-list .lists li .info {width:calc(100% - 150px)}
+}
+
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .css-shapes-preview {border-left:80px solid #FF4136; border-right:80px solid #FF4136}
+  .bookmark-menu {left:-70px; width:140px;}
 }

@@ -1,11 +1,11 @@
 <template>
-	<header>
+	<header class="gnb">
     <div class="container-xl">
       <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <router-link class="navbar-brand" to="/">
             <h1>LeeKwanOh</h1>
-          </a>
+          </router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -18,7 +18,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <router-link class="nav-link" active-class="active" to="/"
                   >Main</router-link
@@ -61,7 +61,7 @@
                   <li>
                     <a
                       class="dropdown-item"
-                      href="https://mylko72.gitbooks.io/git/content/"
+                      href="http://mylko72.gitbooks.io/git/"
                       target="_blank"
                       >Git</a
                     >

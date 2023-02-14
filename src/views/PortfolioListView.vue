@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="row g-3 g-xl-4 my-2" :class="viewClass">
-				<div class="col" v-for="(card, index) in cardItems" :key="index">		
+				<div class="col col-xs-10" v-for="(card, index) in cardItems" :key="index">		
 					<WorkItem 
 						v-bind="workItems(card)"
 						@click="viewType === 'card-thumb' && goDetail(index, $event)">
@@ -49,7 +49,7 @@ const cardItems = ref([]);
 const isAlert = ref(false);
 const isActive = ref(null);
 const defaultType = ref(null);
-const thumbClass = ref(['row-cols-2', 'row-cols-md-3', 'row-cols-lg-4']);
+const thumbClass = ref(['row-cols-xs-1', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4']);
 const listClass = ref(['row-cols-1', 'row-cols-lg-2']);
 const route = useRoute();
 
