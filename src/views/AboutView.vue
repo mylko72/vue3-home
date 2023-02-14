@@ -98,14 +98,15 @@
 <script setup>
 import WorkItem from '@/components/WorkItem.vue';
 import { ref } from '@vue/reactivity';
-import { getWorks } from '@/api/works';
+import { getWorks } from '@/api/posts';
 
 const cardItems = ref([]);
 const show = ref(false);
 
 const fetchWorks = async () => {
 	try {
-		cardItems.value = await getWorks();
+		const { data } = await getWorks('/works.json');
+		cardItems.value = data.works;
 		show.value = true;
 		console.log(cardItems.value);
 	}catch(e){

@@ -41,7 +41,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { getWorks } from '@/api/works';
+import { getWorks } from '@/api/posts';
 import { useRoute, useRouter } from 'vue-router';
 import WorkItem from '@/components/WorkItem.vue';
 
@@ -61,7 +61,8 @@ console.log('routeInfo', routeInfo.value)
 
 const fetchWorks = async () => {
 	try {
-		cardItems.value = await getWorks();
+		const { data } = await getWorks('/works.json');
+		cardItems.value = data.works;
 		defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
 		isActive.value = routeInfo.value === 'card-list' ? false : true;
 		console.log(cardItems.value);

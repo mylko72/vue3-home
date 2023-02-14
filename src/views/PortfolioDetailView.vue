@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref } from '@vue/reactivity';
-import { getWorksById } from '@/api/works.js';
+import { getWorks } from '@/api/posts';
 import { useRoute, useRouter } from 'vue-router';
 import { computed } from '@vue/runtime-core';
 
@@ -55,8 +55,9 @@ const isLoading = ref(null);
 const fetchItem = async (id) => {
   try {
     isLoading.value = false;
-    workItem.value = await getWorksById(id);
-    // console.log(workItem.value.url)
+    const { data } = await getWorks('/works.json');
+    workItem.value = data.works[id];
+    console.log(workItem.value)
     queryInfo.value = route.query;
     isLoading.value = true;
   }catch(e){

@@ -1,9 +1,65 @@
 <template>
-	<div>
-		<h2>BookMark</h2>
+	<div class="container py-5">
+		<div class="col-xl-12 col-xxl-11">
+			<h2 class="mb-4">Bookmark</h2>			
+			<div class="row">
+				<div class="col-lg-2 css-shapes-preview">
+					<ul class="bookmark-menu">
+						<li v-for="(name, index) in bookmarkKeys" :key="index">
+							<a href="#" @click.prevent="goScroll(name)">{{ name }}</a>
+						</li>
+						<!-- <li><a href="#bookmark2">Vue</a></li> -->
+					</ul>
+				</div>
+				<div class="col-lg-9 bookmark-list ms-auto">
+					<div class="row" v-for="(value, key) in bookmarkLists">
+						<h3 :id="key.split('.')[0].toLowerCase()"><i class="bi bi-bookmark me-1"></i> <em>{{ key }}</em></h3>
+						<ul class="lists">
+							<li v-for="(list, index) in value" :key="index">
+								<h4><em>{{ list.site }}</em></h4>
+								<div class="info">
+									<a :href="list.url" target="_blank">{{ list.url }}</a>
+									<p class="explain">{{ list.explain }}</p>
+									<p class="tags">
+										<span v-for="(tag, index2) in list.tags" :key="index2"><i class="bi bi-tags"></i> <a href="#">{{ tag }}</a></span>
+									</p>
+								</div>
+							</li>
+						</ul>						
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from '@vue/reactivity';
+import { getWorks } from '@/api/posts';
+
+const bookmarkLists = ref([]);
+const bookmarkKeys = ref([]);
+
+const fetchBookmark = async () => {
+	try {
+		const { data } = await getWorks('/bookmark.json');
+		bookmarkKeys.value = Object.keys(data);
+		bookmarkLists.value = data;
+	}catch(e){
+		console.log(e.message);
+	}
+}
+
+fetchBookmark();
+
+const goScroll = (target) => {
+	const targetId = target.split('.')[0].toLowerCase();
+	console.log('target', targetId);
+	const elem = document.querySelector('#'+targetId);
+	elem.scrollIntoView({behavior: 'smooth'});
+}
+
+
+</script>
 
 <style scoped></style>

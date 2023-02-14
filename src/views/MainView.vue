@@ -3,9 +3,8 @@
 		<div class="key-visual"></div>
 		<div class="container col-xl-12 col-xxl-11">
 			<h2 class="mt-5">Recent Works</h2>
-			<div class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4 my-4 mb-5">
+			<div class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4 my-work">
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
-					<template v-if="index <= 5">
 						<WorkItem 
 							view="card-list"
 							:badge="show"
@@ -20,53 +19,86 @@
 								</div>
 							</template>
 						</WorkItem>
-					</template>
 				</div>
 			</div>
 		</div>
-			<div class="my-ability active">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="circle">
-								<i class="bi bi-browser-chrome"></i>
-								<p>Web Standard</p>
-								<p>Web Accessibility</p>
-								<p>Cross Browsing</p>
-							</div>
+		<div class="my-ability active">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="circle">
+							<i class="bi bi-browser-chrome"></i>
+							<p>Web Standard</p>
+							<p>Web Accessibility</p>
+							<p>Cross Browsing</p>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="circle">
-								<i class="bi bi-filetype-html"></i>
-								<p>HTML5</p>
-								<p>CSS3</p>
-							</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="circle">
+							<i class="bi bi-filetype-html"></i>
+							<p>HTML5</p>
+							<p>CSS3</p>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="circle">
-								<i class="bi bi-file-earmark-code"></i>
-								<p>Javascript</p>
-								<p>Typescript</p>
-								<p>Vue.js</p>
-							</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="circle">
+							<i class="bi bi-file-earmark-code"></i>
+							<p>Javascript</p>
+							<p>Typescript</p>
+							<p>Vue.js</p>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="circle">
-								<i class="bi bi-phone"></i>
-								<p>Mobile</p>
-								<p>Responsive</p>
-								<p>Interactive</p>
-							</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3">
+						<div class="circle">
+							<i class="bi bi-phone"></i>
+							<p>Mobile</p>
+							<p>Responsive</p>
+							<p>Interactive</p>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="my-concern">
+			<div class="container">
+				<div class="row gx-5">
+					<div class="col-xs-12 col-md-6">
+						<h2>Git, 분산 버전 관리시스템</h2>
+						<div class="d-flex">
+							<div class="col-4 me-3">
+								<img src="/src/assets/images/img_git.png" class="img-fluid" alt="" />
+							</div>
+							<div class="col-8">
+								<p>Git은 분산버전 관리시스템으로 작업파일을 로컬 저장소뿐만 아니라 원격 저장소에도 저장할 수 있으며 작업 이력을 관리하고 분기하여 원하는 시점으로 파일을 복원하거나 통합할 수 있다. 여러사람과 협업과 공유도 가능하며 버전별로 이력을 관리할 수 있는 Git을 이용하여 소스의 품질 향상시키는 방법을 배워보자.</p>
+								<div class="d-grid col-6 mx-auto">
+									<a href="http://mylko72.gitbooks.io/git/" role="button" class="btn btn-outline-secondary" target="_blank">GitBook 보기</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<h2>TypeScript <span class="h4">is JavaScript with syntax for types.</span></h2>
+						<di class="d-flex">
+							<div class="col-4 me-3">
+								<img src="/src/assets/images/img_typescript_logo.png" class="img-fluid" alt="Typescript" />
+							</div>
+							<div class="col-8">
+								<p>2012년 마이크로소프트가 발표한 타입스크립트(TypeScript)는 자바스크립트(JavaScript)를 기반으로 정적 타입 문법을 추가한 프로그래밍 언어이다. 타입(Types)을 사용하면 JavaScript 애플리케이션을 개발할 때 정적 타입 검사 및 코드 리팩토링과 같은 생산성 높은 개발을 수행할 수 있다.</p>
+								<div class="d-grid col-6 mx-auto">
+									<a href="https://www.typescriptlang.org/" class="btn btn-outline-secondary" role="button" target="_blank">공식문서</a>
+								</div>								
+							</div>
+						</di>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script setup>
 import { ref } from "@vue/reactivity";
-import { getWorks } from '@/api/works';
+import { getWorks } from '@/api/posts';
 import WorkItem from '@/components/WorkItem.vue';
 import { useRouter } from "vue-router";
 
@@ -77,7 +109,8 @@ const router = useRouter();
 
 const fetchWorks = async (limit) => {
 	try {
-		cardItems.value = await getWorks(limit);
+		const { data } = await getWorks('/works.json');
+		cardItems.value = data.works.slice(0, limit);
 		show.value = true;
 		console.log(cardItems.value);
 	}catch(e){
