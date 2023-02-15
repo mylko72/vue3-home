@@ -47,41 +47,38 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { getWorks } from '@/api/posts';
 import { useRoute, useRouter } from 'vue-router';
 import WorkItem from '@/components/WorkItem.vue';
+import { useAxios } from '@/composables/useAxios';
 
 const cardItems = ref(null);
-const error = ref(null);
 const isAlert = ref(false);
 const isActive = ref(null);
-const isLoading = ref(false);
 const defaultType = ref(null);
 const thumbClass = ref(['row-cols-xs-1', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4']);
 const listClass = ref(['row-cols-1', 'row-cols-lg-2']);
 const route = useRoute();
 
 const routeInfo = computed(() => {
-	return route.query.type;
+	return route.query.type ?? 'card-thumb';
 });
 
-console.log('routeInfo', routeInfo.value)
+console.log(route.query);
 
-const fetchWorks = async () => {
-	try {
-		const { data } = await getWorks('/works.json');
-		cardItems.value = data.works;
-		defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
-		isActive.value = routeInfo.value === 'card-list' ? false : true;
-		isLoading.value = true;
-		console.log(cardItems.value);
-	}catch(err){
-		error.value = err;
-		console.log(err.message);
+console.log('routeInfo', routeInfo.value);
+
+const { response, data: items, error, loading } = useAxios(
+	'/works.json', 
+	{ method:'get'},
+	{
+		onSuccess: () => { 
+			console.log('data success...');
+			cardItems.value = items.value.works;
+			defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
+			isActive.value = routeInfo.value === 'card-list' ? false : true;
+		}
 	}
-}
-
-fetchWorks();
+);
 
 const viewType = computed({
 	get() {

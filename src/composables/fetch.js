@@ -11,7 +11,7 @@ export const useFetch = (url) => {
   const fetchWorks = async () => {
     try {
       const { data } = await getWorks(url);
-      response.value = data;
+      response.value = data.works;
       // show.value = true;
       isLoading.value = true;
     }catch(err){

@@ -26,6 +26,9 @@ const routes = [
 		path: '/portfolio/:id',
 		name: 'PortfolioDetailView',
 		component: PortfolioDetailView,
+		beforeEnter: (to, from) => {
+
+    },
 	},
 	{
 		path: '/lab',

@@ -84,7 +84,7 @@
 					</div>
 					<div class="col-xs-12 col-md-6">
 						<h2>TypeScript <span class="h4">is JavaScript with syntax for types.</span></h2>
-						<di class="d-flex">
+						<div class="d-flex">
 							<div class="col-4 col-sm-4 col-md-3 me-3">
 								<img src="/src/assets/images/img_typescript_logo.png" class="img-fluid" alt="Typescript" />
 							</div>
@@ -94,7 +94,7 @@
 									<a href="https://www.typescriptlang.org/" class="btn btn-outline-secondary" role="button" target="_blank">공식문서</a>
 								</div>								
 							</div>
-						</di>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -120,7 +120,7 @@ const { response, data: items, error, loading } = useAxios(
 	{ method:'get'},
 	{
 		onSuccess: () => {
-			console.log('성공');
+			console.log('data success...')
 			cardItems.value = items.value.works.slice(0, limit);
 		}
 	}
