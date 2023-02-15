@@ -72,7 +72,7 @@
 				<div class="row lists">
 					<div class="col-3"></div>
 					<div class="col-9 col-md-8">
-						<row v-for="(card, index) in cardItems" :key="index">
+						<div class="row" v-for="(card, index) in cardItems" :key="index">
 							<WorkItem 
 								view="card-default"
 								:badge="true"
@@ -87,7 +87,7 @@
 									</div>
 								</template>
 							</WorkItem>
-						</row>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -99,34 +99,23 @@
 import WorkItem from '@/components/WorkItem.vue';
 import { ref } from '@vue/reactivity';
 import { getWorks } from '@/api/posts';
+import { useFetch } from '@/composables/fetch';
 import { useAxios } from '@/composables/useAxios';
 
 const cardItems = ref([]);
-// const show = ref(false);
 
-// const { response, data: cardItems, error, loading } = useAxios(
-// 	'/works.json', 
-// 	{ method:'get'},
-// 	{
-// 		onSuccess: () => { 
-// 			console.log(data);
-// 			console.log('성공');
-// 			// cardItems.value = items.value.works.slice(0, limit);
-// 		}
-// 	}
-// );
+// const { response: cardItems, error, isLoading } = useFetch('/works.json');
 
-const fetchWorks = async () => {
-	try {
-		const { data } = await getWorks('/works.json');
-		cardItems.value = data.works;
-		console.log(cardItems.value);
-	}catch(e){
-		console.log(e.message);
+const { response, data: items, error, loading } = useAxios(
+	'/works.json', 
+	{ method:'get'},
+	{
+		onSuccess: () => { 
+			console.log('data success...')
+			cardItems.value = items.value.works;
+		}
 	}
-}
-
-fetchWorks();
+);
 
 </script>
 

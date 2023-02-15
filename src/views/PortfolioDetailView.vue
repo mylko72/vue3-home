@@ -34,11 +34,25 @@
   </div>
 </template>
 
+<script>
+const routeInfo = {
+  name: null
+}
+
+export default{
+  beforeRouteEnter(to, from) {
+    console.log('to', to.name);
+    console.log('from', from.name);
+    routeInfo.name = from.name;
+  },
+}
+</script>
+
+
 <script setup>
 import { ref } from '@vue/reactivity';
-import { getWorks } from '@/api/posts';
 import { useRoute, useRouter } from 'vue-router';
-import { computed } from '@vue/runtime-core';
+import { useAxios } from '@/composables/useAxios';
 
 const workItem = ref({
   project: null,
@@ -48,31 +62,25 @@ const workItem = ref({
   date: null,
   url: null,
 });
-const error = ref(null);
 const route = useRoute();
 const router = useRouter();
-const workId = route.params.id;
+const id = route.params.id;
 const queryInfo = ref(null);
-const isLoading = ref(false);
 
-const fetchItem = async (id) => {
-  try {
-    const { data } = await getWorks('/works.json');
-    workItem.value = data.works[id];
-    console.log(workItem.value)
-    queryInfo.value = route.query;
-    isLoading.value = true;
-  }catch(err){
-    error.value = err;
-    console.log(e.message)
-  }
-}
-
-fetchItem(workId);
+const { response, data: items, error, loading } = useAxios(
+	'/works.json', 
+	{ method:'get'},
+	{
+		onSuccess: () => { 
+			console.log('data success...');
+			workItem.value = items.value.works[id];
+			queryInfo.value = route.query;
+		}
+	}
+);
 
 const goList = () => {
-  // window.history.go(-1);
-  router.push({name: 'PortfolioListView', query: queryInfo.value})
+  router.push({name: routeInfo.name, query: queryInfo.value})
 }
 
 </script>

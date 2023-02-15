@@ -35,22 +35,22 @@
 
 <script setup>
 import { ref } from '@vue/reactivity';
-import { getWorks } from '@/api/posts';
+import { useAxios } from '@/composables/useAxios';
 
 const bookmarkLists = ref([]);
 const bookmarkKeys = ref([]);
 
-const fetchBookmark = async () => {
-	try {
-		const { data } = await getWorks('/bookmark.json');
-		bookmarkKeys.value = Object.keys(data);
-		bookmarkLists.value = data;
-	}catch(e){
-		console.log(e.message);
+const { response, data: items, error, loading } = useAxios(
+	'/bookmark.json', 
+	{ method:'get'},
+	{
+		onSuccess: () => { 
+			console.log('data success...');
+			bookmarkLists.value = items.value;
+			bookmarkKeys.value = Object.keys(items.value);
+		}
 	}
-}
-
-fetchBookmark();
+);
 
 const goScroll = (target) => {
 	const targetId = target.split('.')[0].toLowerCase();
