@@ -75,7 +75,7 @@
 						<row v-for="(card, index) in cardItems" :key="index">
 							<WorkItem 
 								view="card-default"
-								:badge="show"
+								:badge="true"
 								:project="card.project"
 								:url="card.url"
 								:date="card.date"
@@ -99,15 +99,27 @@
 import WorkItem from '@/components/WorkItem.vue';
 import { ref } from '@vue/reactivity';
 import { getWorks } from '@/api/posts';
+import { useAxios } from '@/composables/useAxios';
 
 const cardItems = ref([]);
-const show = ref(false);
+// const show = ref(false);
+
+// const { response, data: cardItems, error, loading } = useAxios(
+// 	'/works.json', 
+// 	{ method:'get'},
+// 	{
+// 		onSuccess: () => { 
+// 			console.log(data);
+// 			console.log('성공');
+// 			// cardItems.value = items.value.works.slice(0, limit);
+// 		}
+// 	}
+// );
 
 const fetchWorks = async () => {
 	try {
 		const { data } = await getWorks('/works.json');
 		cardItems.value = data.works;
-		show.value = true;
 		console.log(cardItems.value);
 	}catch(e){
 		console.log(e.message);

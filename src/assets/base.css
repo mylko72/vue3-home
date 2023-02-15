@@ -107,7 +107,13 @@ main {min-height:100vh; padding-bottom:80px;}
 footer {padding:25px 0; background:#333; color:#999}
 footer .nav-link {color:#fff}
 
-.my-work {padding:24px 0 60px;}
+.error-msg {display:flex; min-height:200px; align-items:center; justify-content:center; margin-top:20px;}
+.error-msg span {font-size:1.2rem; font-weight:bold}
+
+.my-work {position:relative; min-height:50vh; padding-top:24px; padding-bottom:60px;}
+.my-work h2 {margin-bottom:24px}
+.my-work .spinner-border {position:absolute; bottom:40%; left:50%;}
+
 .my-ability {margin-bottom:60px; background-color:#d4ecfc; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:20px 0;}
 .my-ability .circle {width:200px; height:200px; margin:0 auto; background-color:#f5f5f5; border:1px solid #23bdc2; -webkit-border-radius:100px; -moz-border-radius:100px; border-radius:100px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; text-align:center;transform:scale(0);opacity:0;transition: opacity 500ms ease 0s, transform 500ms ease 0s;}
 .my-ability .circle > i {margin-bottom:5px; font-size:4em; color:#A8D4D8;}
@@ -120,7 +126,9 @@ footer .nav-link {color:#fff}
 .my-concern h2 {margin-bottom:24px;}
 
 /* Portfolio list */
-.card-lists {margin:0 auto}
+.work-lists {position:relative; min-height:calc(100vh - 200px); margin:0 auto}
+.work-lists .spinner-border {position:absolute; top:40%; left:50%;}
+
 .card .card-img .no-img {width:auto; height:60%; top:50%; left:50%; transform:translate(-50%, -50%); opacity:.3;}
 /* thumbnail type */
 .card-thumb {cursor:pointer}

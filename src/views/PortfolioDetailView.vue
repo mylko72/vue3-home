@@ -2,10 +2,10 @@
 	<div class="container py-5">
     <h2>Portfolio</h2>			
     <div class="detail-view">
-      <div v-if="!isLoading" class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <template v-else>
+			<div v-if="error" class="error-msg">
+				<span class="text-muted">{{ error.message }}</span>
+			</div>
+      <template v-else-if="workItem">
         <div class="d-flex align-items-center justify-content-between">
           <h3>{{ workItem.project }}</h3>
           <button type="button" class="btn prev-btn" @click.prevent="goList"><i class="bi bi-chevron-left"></i></button>
@@ -27,6 +27,9 @@
           </div>
         </div>
       </template>
+      <div v-else class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -45,22 +48,22 @@ const workItem = ref({
   date: null,
   url: null,
 });
-
+const error = ref(null);
 const route = useRoute();
 const router = useRouter();
 const workId = route.params.id;
 const queryInfo = ref(null);
-const isLoading = ref(null);
+const isLoading = ref(false);
 
 const fetchItem = async (id) => {
   try {
-    isLoading.value = false;
     const { data } = await getWorks('/works.json');
     workItem.value = data.works[id];
     console.log(workItem.value)
     queryInfo.value = route.query;
     isLoading.value = true;
-  }catch(e){
+  }catch(err){
+    error.value = err;
     console.log(e.message)
   }
 }

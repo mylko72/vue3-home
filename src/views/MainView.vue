@@ -1,13 +1,16 @@
 <template>
 	<div>
 		<div class="key-visual"></div>
-		<div class="container col-xl-12 col-xxl-11">
+		<div class="container col-xl-12 col-xxl-11 my-work">
 			<h2 class="mt-5">Recent Works</h2>
-			<div class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4 my-work">
+			<div v-if="error" class="error-msg">
+				<span class="text-muted">{{ error.message }}</span>
+			</div>
+			<div v-else-if="cardItems" class="row row-cols-1 row-cols-lg-2 g-3 gy-4 g-xl-4">
 				<div class="col" v-for="(card, index) in cardItems" :key="index">
 						<WorkItem 
 							view="card-list"
-							:badge="show"
+							:badge="true"
 							:project="card.project"
 							:client="card.client"
 							:url="card.url"
@@ -21,6 +24,9 @@
 						</WorkItem>
 				</div>
 			</div>
+      <div v-else class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
 		</div>
 		<div class="my-ability active">
 			<div class="container">
@@ -101,24 +107,39 @@ import { ref } from "@vue/reactivity";
 import { getWorks } from '@/api/posts';
 import WorkItem from '@/components/WorkItem.vue';
 import { useRouter } from "vue-router";
+import { useFetch } from '@/composables/fetch';
+import { useAxios } from '@/composables/useAxios';
 
-const cardItems = ref([]);
-const show = ref(false);
+const cardItems = ref(null);
 const limit = 6;
 const router = useRouter();
+
+// const { response, error, isLoading } = useFetch('/works.json');
+const { response, data: items, error, loading } = useAxios(
+	'/works.json', 
+	{ method:'get'},
+	{
+		onSuccess: () => {
+			console.log('성공');
+			cardItems.value = items.value.works.slice(0, limit);
+		}
+	}
+);
 
 const fetchWorks = async (limit) => {
 	try {
 		const { data } = await getWorks('/works.json');
 		cardItems.value = data.works.slice(0, limit);
 		show.value = true;
+		isLoading.value = true;
 		console.log(cardItems.value);
-	}catch(e){
+	}catch(err){
+		error.value = err;
 		console.log(e.message);
 	}
 }
 
-fetchWorks(limit);
+//fetchWorks(limit);
 
 const goDetail = (id) => {
 	if(!cardItems.value[id].images.length){

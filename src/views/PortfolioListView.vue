@@ -1,6 +1,6 @@
 <template>
 	<div class="container py-5">
-		<div class="card-lists col-xl-12 col-xxl-11">
+		<div class="work-lists col-xl-12 col-xxl-11">
 			<h2>Portfolio</h2>			
 			<div class="d-flex">
 				<div class="ms-auto">
@@ -16,7 +16,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row g-3 g-xl-4 my-2" :class="viewClass">
+			<div v-if="error" class="error-msg">
+				<span class="text-muted">{{ error.message }}</span>
+			</div>
+			<div v-else-if="cardItems" class="row g-3 g-xl-4 my-2" :class="viewClass">
 				<div class="col col-xs-10" v-for="(card, index) in cardItems" :key="index">		
 					<WorkItem 
 						v-bind="workItems(card)"
@@ -30,6 +33,9 @@
 					</WorkItem>
 				</div>
 			</div>
+      <div v-else class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
 		</div>
 		<Transition name="slide">
 			<div v-if="isAlert" class="alert alert-danger v-alert" role="alert">
@@ -45,9 +51,11 @@ import { getWorks } from '@/api/posts';
 import { useRoute, useRouter } from 'vue-router';
 import WorkItem from '@/components/WorkItem.vue';
 
-const cardItems = ref([]);
+const cardItems = ref(null);
+const error = ref(null);
 const isAlert = ref(false);
 const isActive = ref(null);
+const isLoading = ref(false);
 const defaultType = ref(null);
 const thumbClass = ref(['row-cols-xs-1', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4']);
 const listClass = ref(['row-cols-1', 'row-cols-lg-2']);
@@ -65,9 +73,11 @@ const fetchWorks = async () => {
 		cardItems.value = data.works;
 		defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
 		isActive.value = routeInfo.value === 'card-list' ? false : true;
+		isLoading.value = true;
 		console.log(cardItems.value);
-	}catch(e){
-		console.log(e.message);
+	}catch(err){
+		error.value = err;
+		console.log(err.message);
 	}
 }
 
