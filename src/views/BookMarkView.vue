@@ -3,7 +3,7 @@
 		<div class="col-xl-12 col-xxl-11 mx-auto">
 			<h2 class="mb-4">Bookmark</h2>			
 			<div class="row">
-				<div class="col-md-1 col-lg-2 css-shapes-preview">
+				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }">
 					<ul class="bookmark-menu">
 						<li v-for="(name, index) in bookmarkKeys" :key="index">
 							<a href="#" @click.prevent="goScroll(name)">{{ name }}</a>
@@ -36,9 +36,11 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { useAxios } from '@/composables/useAxios';
+import { onMounted, onUnmounted } from '@vue/runtime-core';
 
 const bookmarkLists = ref([]);
 const bookmarkKeys = ref([]);
+const pageYOffset = ref(0);
 
 const { response, data: items, error, loading } = useAxios(
 	'/bookmark.json', 
@@ -59,6 +61,32 @@ const goScroll = (target) => {
 	elem.scrollIntoView({behavior: 'smooth'});
 }
 
+const el = ref(null);
+const isFixed = ref(false);
+
+const updateScroll = (top) => {
+
+	const pageYOffset = window.pageYOffset;
+	
+	if(pageYOffset >= top){
+		isFixed.value = true;
+	}else{
+		isFixed.value = false;
+	}
+}
+
+onMounted(() => {
+	const { top } = el.value.getBoundingClientRect();	
+	const absTop = top + window.pageYOffset;
+
+	window.addEventListener('scroll', () => {
+		updateScroll(absTop);
+	});
+});
+
+onUnmounted(() => {
+	window.removeEventListener('scroll', updateScroll);
+})
 
 </script>
 
