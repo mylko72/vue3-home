@@ -36,11 +36,11 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { useAxios } from '@/composables/useAxios';
-import { onMounted, onUnmounted } from '@vue/runtime-core';
+import { computed, onMounted, onUnmounted } from '@vue/runtime-core';
+import { useScroll } from '@/composables/useScroll';
 
 const bookmarkLists = ref([]);
 const bookmarkKeys = ref([]);
-const pageYOffset = ref(0);
 
 const { response, data: items, error, loading } = useAxios(
 	'/bookmark.json', 
@@ -62,31 +62,12 @@ const goScroll = (target) => {
 }
 
 const el = ref(null);
-const isFixed = ref(false);
+const { pageYOffset, absTop } = useScroll(el);
 
-const updateScroll = (top) => {
-
-	const pageYOffset = window.pageYOffset;
-	
-	if(pageYOffset >= top){
-		isFixed.value = true;
-	}else{
-		isFixed.value = false;
-	}
-}
-
-onMounted(() => {
-	const { top } = el.value.getBoundingClientRect();	
-	const absTop = top + window.pageYOffset;
-
-	window.addEventListener('scroll', () => {
-		updateScroll(absTop);
-	});
+const isFixed = computed(() => {
+	return pageYOffset.value > absTop.value;
 });
 
-onUnmounted(() => {
-	window.removeEventListener('scroll', updateScroll);
-})
 
 </script>
 
