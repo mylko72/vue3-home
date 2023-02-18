@@ -2,13 +2,12 @@
 	<div class="container py-5">
 		<div class="col-xl-12 col-xxl-11 mx-auto">
 			<h2 class="mb-4">Bookmark</h2>			
-			<div class="row">
-				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }">
+			<div class="row ps-3">
+				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }" :style="{'left': isFixed ? absLeft+'px' : 'unset' }">
 					<ul class="bookmark-menu">
 						<li v-for="(name, index) in bookmarkKeys" :key="index">
 							<a href="#" @click.prevent="goScroll(name)">{{ name }}</a>
 						</li>
-						<!-- <li><a href="#bookmark2">Vue</a></li> -->
 					</ul>
 				</div>
 				<div class="col-sm-11 col-md-8 col-lg-9 bookmark-list ms-auto">
@@ -43,7 +42,7 @@ const bookmarkLists = ref([]);
 const bookmarkKeys = ref([]);
 
 const { response, data: items, error, loading } = useAxios(
-	'/bookmark.json', 
+	'/src/api/bookmark.json', 
 	{ method:'get'},
 	{
 		onSuccess: () => { 
@@ -62,12 +61,23 @@ const goScroll = (target) => {
 }
 
 const el = ref(null);
-const { pageYOffset, absTop } = useScroll(el);
+const { pageYOffset, absTop, absLeft } = useScroll({ target: el });
 
 const isFixed = computed(() => {
 	return pageYOffset.value > absTop.value;
 });
 
+const winWidth = ref(0);
+
+onMounted(() => {
+	window.addEventListener('load', () => winWidth.value = window.innerWidth);
+	window.addEventListener('resize', () => winWidth.value = window.innerWidth);
+})
+
+onUnmounted(() => {
+	window.removeEventListener('load', () => winWidth.value = window.innerWidth);
+	window.removeEventListener('resize', () => winWidth.value = window.innerWidth);
+})
 
 </script>
 

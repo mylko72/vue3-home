@@ -68,7 +68,7 @@ console.log(route.query);
 console.log('routeInfo', routeInfo.value);
 
 const { response, data: items, error, loading } = useAxios(
-	'/works.json', 
+	'/src/api/works.json', 
 	{ method:'get'},
 	{
 		onSuccess: () => { 

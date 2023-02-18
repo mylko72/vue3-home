@@ -197,7 +197,7 @@ footer .nav-link {color:#fff}
 .my-history {margin-bottom:-80px; background:#82ccdd;}
 .my-history .lists {margin-top:-40px}
 
-.css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:15px; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
+.css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:0; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
 .css-shapes-preview.fixed {position:fixed; top:0; left:70px}
 .bookmark-menu {position:absolute; left:-90px; top:10px; width:175px; padding-left:0}
 .bookmark-menu > li {padding-left:14px; border-bottom:1px dotted #FF746C; font-size:1rem; line-height:250%; color:#fff; -webkit-transition:all .5s ease;}
@@ -242,9 +242,10 @@ footer .nav-link {color:#fff}
 }
 
 @media (max-width: 768px) {
-  .css-shapes-preview {width:calc(100% - 30px); height:320px; border:none; margin-bottom:50px; padding:20px 30px; background: #FF4136; border-radius:20px}
+  .css-shapes-preview {width:calc(100% - 30px); height:320px; border:none; margin-bottom:50px; margin-left:15px; padding:20px 30px; background: #FF4136; border-radius:20px}
   .bookmark-menu {position:relative; left:0; width:100%; display:flex; flex-wrap:wrap;}
   .bookmark-menu li {width:50%; flex-basis:50%;}
+  .bookmark-list {margin:0 auto}
   .bookmark-list .lists li h4 {width:150px; flex:0 0 150px}
   .bookmark-list .lists li .info {width:calc(100% - 150px)}
 }

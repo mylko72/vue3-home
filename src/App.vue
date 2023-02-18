@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<TheHeader />
-		<TheView ref="el" />
+		<TheView />
 		<TheFooter />
-		<TopButton :target="target" />
+		<TopButton />
 	</div>
 </template>
 
@@ -14,14 +14,6 @@ import TheFooter from './layout/TheFooter.vue';
 import TopButton from './components/TopButton.vue';
 import { ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
-
-const el = ref(null);
-const target = ref(null);
-
-onMounted(() => {
-	target.value = el.value.$el;
-	// console.log(el.value.$el);
-})
 
 </script>
 
