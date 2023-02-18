@@ -68,7 +68,7 @@ const id = route.params.id;
 const queryInfo = ref(null);
 
 const { response, data: items, error, loading } = useAxios(
-	'/src/api/works.json', 
+	'/works.json', 
 	{ method:'get'},
 	{
 		onSuccess: () => { 

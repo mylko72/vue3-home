@@ -42,7 +42,7 @@ const bookmarkLists = ref([]);
 const bookmarkKeys = ref([]);
 
 const { response, data: items, error, loading } = useAxios(
-	'/src/api/bookmark.json', 
+	'/bookmark.json', 
 	{ method:'get'},
 	{
 		onSuccess: () => { 

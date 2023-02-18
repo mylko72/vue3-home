@@ -116,7 +116,7 @@ const router = useRouter();
 
 // const { response, error, isLoading } = useFetch('/works.json');
 const { response, data: items, error, loading } = useAxios(
-	'/src/api/works.json', 
+	'/works.json', 
 	{ method:'get'},
 	{
 		onSuccess: () => {
