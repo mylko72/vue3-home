@@ -70,7 +70,9 @@
 			<div class="container py-5">
 				<h3>My History</h3>
 				<div class="row lists">
-					<div class="col-3"></div>
+					<div class="col-3">
+						<span class="ico-history"><i class="bi bi-calendar-week"></i></span>
+					</div>
 					<div class="col-9 col-md-8">
 						<div class="row" v-for="(card, index) in cardItems" :key="index">
 							<WorkItem 
