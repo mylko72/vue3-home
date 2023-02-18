@@ -27,7 +27,7 @@
 						<template #card-image>
 							<div class="card-img">
 								<img v-if="card.thumbnail" :src="card.thumbnail" @click="viewType === 'card-list' && goDetail(index)" class="card-img-top" alt="">
-								<img v-else src="/src/assets/images/img_no.png" class="card-img-top no-img" alt="">
+								<img v-else src="/assets/images/img_no.png" class="card-img-top no-img" alt="">
 							</div>
 						</template>
 					</WorkItem>

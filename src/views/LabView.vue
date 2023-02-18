@@ -2,7 +2,7 @@
 	<div class="container py-5">
 		<div class="col-md-10 toy-project">
 			<figure class="img-cover">
-					<div class="inner"><a href="http://my-todo.surge.sh/html/index.html" target="_blank"><img src="/src/assets/images/img_time_capsule.jpg" alt="Time Capsule" /></a></div>
+					<div class="inner"><a href="http://my-todo.surge.sh/html/index.html" target="_blank"><img src="/assets/images/img_time_capsule.jpg" alt="Time Capsule" /></a></div>
 					<figcaption><em>Time Capsule, <a href="http://my-todo.surge.sh/html/index.html" target="_blank">http://my-todo.surge.sh/html/index.html</a></em></figcaption>
 			</figure>
 															

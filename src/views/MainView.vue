@@ -18,7 +18,7 @@
 							<template #card-image>
 								<div class="card-img">
 									<img v-if="card.thumbnail" :src="card.thumbnail" @click="goDetail(index)" class="card-img-top" alt="">
-									<img v-else src="/src/assets/images/img_no.png" class="card-img-top no-img" alt="">
+									<img v-else src="/assets/images/img_no.png" class="card-img-top no-img" alt="">
 								</div>
 							</template>
 						</WorkItem>
@@ -72,7 +72,7 @@
 						<h2>Git, 분산 버전 관리시스템</h2>
 						<div class="d-flex">
 							<div class="col-4 col-sm-4 col-md-3 me-3">
-								<img src="/src/assets/images/img_git.png" class="img-fluid" alt="" />
+								<img src="/assets/images/img_git.png" class="img-fluid" alt="" />
 							</div>
 							<div class="col-xs-8 col-sm-8 col-md-9">
 								<p>Git은 분산버전 관리시스템으로 작업파일을 로컬 저장소뿐만 아니라 원격 저장소에도 저장할 수 있으며 작업 이력을 관리하고 분기하여 원하는 시점으로 파일을 복원하거나 통합할 수 있다. 여러사람과 협업과 공유도 가능하며 버전별로 이력을 관리할 수 있는 Git을 이용하여 소스의 품질 향상시키는 방법을 배워보자.</p>
@@ -86,7 +86,7 @@
 						<h2>TypeScript <span class="h4">is JavaScript with syntax for types.</span></h2>
 						<div class="d-flex">
 							<div class="col-4 col-sm-4 col-md-3 me-3">
-								<img src="/src/assets/images/img_typescript_logo.png" class="img-fluid" alt="Typescript" />
+								<img src="/assets/images/img_typescript_logo.png" class="img-fluid" alt="Typescript" />
 							</div>
 							<div class="col-xs-8 col-sm-8 col-md-9">
 								<p>2012년 마이크로소프트가 발표한 타입스크립트(TypeScript)는 자바스크립트(JavaScript)를 기반으로 정적 타입 문법을 추가한 프로그래밍 언어이다. 타입(Types)을 사용하면 JavaScript 애플리케이션을 개발할 때 정적 타입 검사 및 코드 리팩토링과 같은 생산성 높은 개발을 수행할 수 있다.</p>
@@ -153,7 +153,7 @@ const goDetail = (id) => {
 <style scoped>
 .key-visual {
 	height: 500px;
-	background-image: url(@/assets/images/img_winter.jpg);
+	background-image: url(/assets/images/img_winter.jpg);
 	background-position: 50% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

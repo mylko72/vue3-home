@@ -2,10 +2,10 @@
   "works":[
     {
       "project":"삼성물산 패션몰 개선 및 운영",
-      "thumbnail":"/src/assets/images/img_ssfshop_s.jpg",
+      "thumbnail":"/assets/images/img_ssfshop_s.jpg",
       "images":[
-        "/src/assets/images/img_ssfshop_01.jpg",
-        "/src/assets/images/img_ssfshop_02.jpg"
+        "/assets/images/img_ssfshop_01.jpg",
+        "/assets/images/img_ssfshop_02.jpg"
       ],
       "company":"웨이브",
       "client":"삼성물산",
@@ -29,10 +29,10 @@
     },
     {
       "project":"신한은행 배달앱서비스 땡겨요",
-      "thumbnail":"/src/assets/images/img_ddangyo_s.jpg",
+      "thumbnail":"/assets/images/img_ddangyo_s.jpg",
       "images":[
-        "/src/assets/images/img_ddangyo_01.jpg",
-        "/src/assets/images/img_ddangyo_02.jpg"
+        "/assets/images/img_ddangyo_01.jpg",
+        "/assets/images/img_ddangyo_02.jpg"
       ],
       "company":"픽스다인",
       "client":"신한은행",
@@ -43,9 +43,9 @@
     },
     {
       "project":"삼성SDS 인적자원 Visibility 강화과제",
-      "thumbnail":"/src/assets/images/img_sds_s.jpg",
+      "thumbnail":"/assets/images/img_sds_s.jpg",
       "images":[
-        "/src/assets/images/img_sds_s.png"
+        "/assets/images/img_sds_s.png"
       ],
       "company":"픽스다인",
       "client":"삼성SDS",
@@ -55,11 +55,11 @@
     },
     {
       "project":" 신라면세점 운영 및 서비스 구축",
-      "thumbnail":"/src/assets/images/img_shilladfs_s.jpg",
+      "thumbnail":"/assets/images/img_shilladfs_s.jpg",
       "images":[
-        "/src/assets/images/recent_shilladfs_view2.jpg",
-        "/src/assets/images/recent_shilladfs_view.jpg",
-        "/src/assets/images/recent_shilladfs_view3.jpg"
+        "/assets/images/recent_shilladfs_view2.jpg",
+        "/assets/images/recent_shilladfs_view.jpg",
+        "/assets/images/recent_shilladfs_view3.jpg"
       ],
       "company":"픽스다인",
       "client":"신라면세점",
@@ -70,9 +70,9 @@
     },
     {
       "project":"홈앤쇼핑 운영 및 개선",
-      "thumbnail":"/src/assets/images/img_hnsmall_s.jpg",
+      "thumbnail":"/assets/images/img_hnsmall_s.jpg",
       "images":[
-        "/src/assets/images/recent_hnsmall_view.jpg"
+        "/assets/images/recent_hnsmall_view.jpg"
       ],
       "company":"소셜앱스",
       "client":"홈앤쇼핑",
@@ -83,9 +83,9 @@
     },
     {
       "project":"네이버 통합검색 UI 개선",
-      "thumbnail":"/src/assets/images/img_naver_s.jpg",
+      "thumbnail":"/assets/images/img_naver_s.jpg",
       "images":[
-        "/src/assets/images/recent_naver_view.jpg"
+        "/assets/images/recent_naver_view.jpg"
       ],
       "company":"이노스트",
       "client":"NHN",
@@ -96,9 +96,9 @@
     },
     {
       "project":"Toryburch 쇼핑몰 구축",
-      "thumbnail":"/src/assets/images/img_toryburch_s.jpg",
+      "thumbnail":"/assets/images/img_toryburch_s.jpg",
       "images":[
-        "/src/assets/images/recent_toryburch_view.jpg"
+        "/assets/images/recent_toryburch_view.jpg"
       ],
       "company":"이젠 인터렉티브",
       "client":"제일모직",
@@ -109,9 +109,9 @@
     },
     {
       "project":"LG.COM 4.0 Roll Out",
-      "thumbnail":"/src/assets/images/img_lgcom_s.jpg",
+      "thumbnail":"/assets/images/img_lgcom_s.jpg",
       "images":[
-        "/src/assets/images/recent_lgcom_view.jpg"
+        "/assets/images/recent_lgcom_view.jpg"
       ],
       "company":"피프티원",
       "client":"LG CNS",
@@ -122,9 +122,9 @@
     },
     {
       "project":"한컴 핀테크 드림시드",
-      "thumbnail":"/src/assets/images/img_dreamsead_s.jpg",
+      "thumbnail":"/assets/images/img_dreamsead_s.jpg",
       "images":[
-        "/src/assets/images/recent_dreamsead_view.jpg"
+        "/assets/images/recent_dreamsead_view.jpg"
       ],
       "company":"디지털즈",
       "client":"한글과 컴퓨터",
@@ -148,9 +148,9 @@
     },
     {
       "project":"Lotte Fresh 리뉴얼",
-      "thumbnail":"/src/assets/images/img_lotte_fresh_s.jpg",
+      "thumbnail":"/assets/images/img_lotte_fresh_s.jpg",
       "images":[
-        "/src/assets/images/img_lotte_fresh.jpg"
+        "/assets/images/img_lotte_fresh.jpg"
       ],
       "company":"퍼플루트",
       "client":"LOTTE",
@@ -161,9 +161,9 @@
     },
     {
       "project":"SAMSUNG CN 반응형웹",
-      "thumbnail":"/src/assets/images/img_samsung_cn_s.jpg",
+      "thumbnail":"/assets/images/img_samsung_cn_s.jpg",
       "images":[
-        "/src/assets/images/img_samsung_cn.jpg"
+        "/assets/images/img_samsung_cn.jpg"
       ],
       "company":"오픈타이드차이나",
       "client":"SAMSUNG",
@@ -174,9 +174,9 @@
     },
     {
       "project":"SAMSUNG UK 반응형웹",
-      "thumbnail":"/src/assets/images/recent_work_01.jpg",
+      "thumbnail":"/assets/images/recent_work_01.jpg",
       "images":[
-        "/src/assets/images/recent_work_view01.jpg"
+        "/assets/images/recent_work_view01.jpg"
       ],
       "company":"에이디앤스타일",
       "client":"SAMSUNG",
@@ -187,9 +187,9 @@
     },
     {
       "project":"LG Fashion Shop 모바일웹",
-      "thumbnail":"/src/assets/images/recent_work_03.jpg",
+      "thumbnail":"/assets/images/recent_work_03.jpg",
       "images":[
-        "/src/assets/images/recent_work_view03.jpg"
+        "/assets/images/recent_work_view03.jpg"
       ],
       "company":"ITLINE",
       "client":"LG Fashion",
@@ -200,9 +200,9 @@
     },
     {
       "project":"LG Fashion Shop",
-      "thumbnail":"/src/assets/images/recent_work_02.jpg",
+      "thumbnail":"/assets/images/recent_work_02.jpg",
       "images":[
-        "/src/assets/images/recent_work_view02.jpg"
+        "/assets/images/recent_work_view02.jpg"
       ],
       "company":"ITLINE",
       "client":"LG Fashion",
@@ -213,9 +213,9 @@
     },
     {
       "project":"SAMSUNG Developers",
-      "thumbnail":"/src/assets/images/recent_work_04.jpg",
+      "thumbnail":"/assets/images/recent_work_04.jpg",
       "images":[
-        "/src/assets/images/recent_work_view04.jpg"
+        "/assets/images/recent_work_view04.jpg"
       ],
       "company":"CONTENTS TECH",
       "client":"SAMSUNG",
@@ -226,9 +226,9 @@
     },
     {
       "project":"SKT 멤버십",
-      "thumbnail":"/src/assets/images/recent_work_05.jpg",
+      "thumbnail":"/assets/images/recent_work_05.jpg",
       "images":[
-        "/src/assets/images/recent_work_view05.jpg"
+        "/assets/images/recent_work_view05.jpg"
       ],
       "company":"미디어포스",
       "client":"SKTelecom",
@@ -239,9 +239,9 @@
     },
     {
       "project":"신한은행",
-      "thumbnail":"/src/assets/images/recent_work_06.jpg",
+      "thumbnail":"/assets/images/recent_work_06.jpg",
       "images":[
-        "/src/assets/images/img_shinhan_bank.jpg"
+        "/assets/images/img_shinhan_bank.jpg"
       ],
       "company":"미디어포스",
       "client":"신한은행",
@@ -252,9 +252,9 @@
     },
     {
       "project":"현대엔지니어링",
-      "thumbnail":"/src/assets/images/recent_work_08.jpg",
+      "thumbnail":"/assets/images/recent_work_08.jpg",
       "images":[
-        "/src/assets/images/img_hyundae_engineering.jpg"
+        "/assets/images/img_hyundae_engineering.jpg"
       ],
       "company":"미디어포스",
       "client":"현대엔지니어링",
@@ -265,9 +265,9 @@
     },
     {
       "project":"롯데카드",
-      "thumbnail":"/src/assets/images/recent_work_07.jpg",
+      "thumbnail":"/assets/images/recent_work_07.jpg",
       "images":[
-        "/src/assets/images/recent_work_view07.jpg"
+        "/assets/images/recent_work_view07.jpg"
       ],
       "company":"미디어포스",
       "client":"Lotte Card",
@@ -278,9 +278,9 @@
     },
     {
       "project":"KTH 컨버전스 영상서비스",
-      "thumbnail":"/src/assets/images/img_playy.jpg",
+      "thumbnail":"/assets/images/img_playy.jpg",
       "images":[
-        "/src/assets/images/img_playy.jpg"
+        "/assets/images/img_playy.jpg"
       ],
       "company":"미디어포스",
       "client":"KTH",
@@ -291,9 +291,9 @@
     },
     {
       "project":"Tooniverse",
-      "thumbnail":"/src/assets/images/img_tooniverse_s.jpg",
+      "thumbnail":"/assets/images/img_tooniverse_s.jpg",
       "images":[
-        "/src/assets/images/img_tooniverse.jpg"
+        "/assets/images/img_tooniverse.jpg"
       ],
       "company":"미디어포스",
       "client":"CJ E&N",
@@ -304,9 +304,9 @@
     },
     {
       "project":"SKT T bizpoint",
-      "thumbnail":"/src/assets/images/recent_work_11.jpg",
+      "thumbnail":"/assets/images/recent_work_11.jpg",
       "images":[
-        "/src/assets/images/img_sktbiz_point.jpg"
+        "/assets/images/img_sktbiz_point.jpg"
       ],
       "company":"미디어포스",
       "client":"SK 텔레콤",
@@ -317,9 +317,9 @@
     },
     {
       "project":"BC카드 법인",
-      "thumbnail":"/src/assets/images/img_wise_biz_s.jpg",
+      "thumbnail":"/assets/images/img_wise_biz_s.jpg",
       "images":[
-        "/src/assets/images/img_wise_biz.jpg"
+        "/assets/images/img_wise_biz.jpg"
       ],
       "company":"미디어포스",
       "client":"BC",
@@ -330,7 +330,7 @@
     },
     {
       "project":"BC 골프라운지",
-      "thumbnail":"/src/assets/images/recent_work_13.gif",
+      "thumbnail":"/assets/images/recent_work_13.gif",
       "images":[
         
       ],
@@ -356,9 +356,9 @@
     },
     {
       "project":"2008 SK 텔레콤 T world",
-      "thumbnail":"/src/assets/images/recent_work_14_s.jpg",
+      "thumbnail":"/assets/images/recent_work_14_s.jpg",
       "images":[
-        "/src/assets/images/img_tworld_2008.jpg"
+        "/assets/images/img_tworld_2008.jpg"
       ],
       "company":"미디어포스",
       "client":"SK 텔레콤",
@@ -369,7 +369,7 @@
     },
     {
       "project":"2007 SK 텔레콤 T world",
-      "thumbnail":"/src/assets/images/recent_work_15.gif",
+      "thumbnail":"/assets/images/recent_work_15.gif",
       "images":[
         
       ],
@@ -382,7 +382,7 @@
     },
     {
       "project":"쇼핑몰 와와닷컴",
-      "thumbnail":"/src/assets/images/recent_work_16.jpg",
+      "thumbnail":"/assets/images/recent_work_16.jpg",
       "images":[
         
       ],
@@ -394,7 +394,7 @@
     },
     {
       "project":"한국기업데이터",
-      "thumbnail":"/src/assets/images/recent_work_17.jpg",
+      "thumbnail":"/assets/images/recent_work_17.jpg",
       "images":[
         
       ],
@@ -407,7 +407,7 @@
     },
     {
       "project":"오즈뮤직",
-      "thumbnail":"/src/assets/images/recent_work_18.jpg",
+      "thumbnail":"/assets/images/recent_work_18.jpg",
       "images":[
         
       ],
@@ -420,7 +420,7 @@
     },
     {
       "project":"MBC ESPN",
-      "thumbnail":"/src/assets/images/recent_work_19.jpg",
+      "thumbnail":"/assets/images/recent_work_19.jpg",
       "images":[
         
       ],
