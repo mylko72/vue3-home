@@ -167,9 +167,17 @@ footer .nav-link {color:#fff}
 .detail-view .desc-list .list-group-item .txt:only-child {width:100%}
 .detail-view .desc-list .list-group-item > a {width:190px;} 
 
+.key-visual {
+	height: 500px;
+	background-image: url(/assets/images/img_winter.jpg);
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
 .my-key-visual {
 	height: 650px;
-	background-image: url(@/assets/images/img_about_01-min.jpg);
+	background-image: url(/assets/images/img_about_01-min.jpg);
 	background-position: 50% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -184,6 +192,7 @@ footer .nav-link {color:#fff}
 .about-me span.brown {background-color:#ff8B00; font-size:1.2em; color:#fff; }
 .about-me span.maroon {background-color:#85144B; font-size:1.2em; color:#fff; }
 .about-me span.green {background-color:#55c05b; font-size:1.2em; color:#fff; }
+.about-me .profile {padding-left:0}
 .about-me .ico-bicycle {position:absolute; bottom:-110%; right:0; font-size:35em; opacity:.1;}
 
 .my-skill {background-color:#6a89cc; color:#fff; overflow:hidden}
@@ -198,7 +207,7 @@ footer .nav-link {color:#fff}
 .my-history .lists {margin-top:-40px}
 
 .css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:0; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
-.css-shapes-preview.fixed {position:fixed; top:0; left:70px}
+.css-shapes-preview.fixed {position:fixed; top:0; left:70px; width:0;}
 .bookmark-menu {position:absolute; left:-90px; top:10px; width:175px; padding-left:0}
 .bookmark-menu > li {padding-left:14px; border-bottom:1px dotted #FF746C; font-size:1rem; line-height:250%; color:#fff; -webkit-transition:all .5s ease;}
 .bookmark-menu > li.sel {border: 0px solid #ff0000; border-radius: 5px; background-color:#bf0000; transform:scale(1.4); }
