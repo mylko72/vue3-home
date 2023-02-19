@@ -1,6 +1,6 @@
 * { margin:0; padding:0; }
 * {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-html, body { margin:0px; padding:0px; background-color:#fff; font-family:"Nanum Gothic", 'Dotum', 'serif', sans-serif; font-size:100%; color:#666; line-height:100%; overflow-y:auto;}
+html, body { margin:0px; padding:0px; background-color:#fff; font-family: "Nanum Gothic", 'Dotum', 'serif', sans-serif; font-size:100%; color:#666; line-height:100%; overflow-y:auto;}
 img { max-width:100%; border:0; vertical-align:top; }
 fieldset { border:0px; }
 legend { visibility:hidden; height:0px; width:0px; line-height:0; _text-indent:-10px; font-size:0px; }
@@ -15,8 +15,7 @@ caption, legend,  #skipNavi {width:0; height:0; line-height:0; overflow:hidden; 
 
 a, a:link, a:visited, a:active {color:inherit; text-decoration:none;}
 a:hover {text-decoration:none;}
-a {outline:none;select-dummy:expression(this.hideFocus=true);}
-
+a {outline:none;}
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
