@@ -5,11 +5,23 @@
 			<div class="d-flex">
 				<div class="ms-auto">
 					<div class="btn-group">
-						<button type="button" class="btn btn-outline-secondary" :class="{'active' : !isActive}" @click="viewType = 'card-list'">
+						<button type="button" 
+							ref="anchor1"
+							class="btn btn-outline-secondary ico-tooltip" 
+							:class="{'active' : !isActive}" 
+							@click="viewType = 'card-list'"
+							@mouseenter="showTooltip($refs['anchor1'], '리스트로 보기')" 
+							@mouseout="hideTooltip">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
 						</button>
-						<button type="button" class="btn btn-outline-secondary" :class="{'active' : isActive}" @click="viewType = 'card-thumb'">
+						<button type="button" 
+							ref="anchor2"
+							class="btn btn-outline-secondary ico-tooltip" 
+							:class="{'active' : isActive}" 
+							@click="viewType = 'card-thumb'"
+							@mouseenter="showTooltip($refs['anchor2'], '썸네일로 보기')" 
+							@mouseout="hideTooltip">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
 						</button>
@@ -42,14 +54,18 @@
 				상세 이미지가 없습니다.
 			</div>
 		</Transition>
+		<Teleport to="body">
+			<AppTooltip :isHover="isHover" :computedStyledObject="styleObject" :infoTxt="msg" />
+		</Teleport>
 	</div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
-import WorkItem from '@/components/WorkItem.vue';
 import { useAxios } from '@/composables/useAxios';
+import WorkItem from '@/components/WorkItem.vue';
+import AppTooltip from '@/components/app/AppTooltip.vue';
 
 const cardItems = ref(null);
 const isAlert = ref(false);
@@ -110,6 +126,37 @@ const workItems = (work) => {
 		date: work.date
 	}
 }
+
+const isHover = ref(false);
+const anchor1 = ref(null);
+const anchor2 = ref(null);
+const msg = ref(null);
+const styleObject = computed(() => {
+	return { top:0, left: 0 }
+})
+const showTooltip = (el, info) => {
+	const { top, left, width, height } = el.getBoundingClientRect();
+	const { absTop, absLeft } = setPosition(top, left);
+	styleObject.value.top = (absTop - height)+'px';
+	styleObject.value.left = (absLeft+(width/2))+'px';
+	msg.value = info;
+	isHover.value = true;
+}
+const hideTooltip = () => {
+	isHover.value = false;
+}
+
+const setPosition = (top, left) => {
+	return {
+		absTop: window.pageYOffset + top,
+		absLeft: window.pageXOffset + left
+	}
+}
+
+onMounted(() => {
+	// console.log(anchor1.value)
+	// console.log(anchor2.value)
+})
 
 const router = useRouter();
 const goDetail = (id, $event) => {
