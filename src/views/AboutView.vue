@@ -109,7 +109,7 @@ const cardItems = ref([]);
 // const { response: cardItems, error, isLoading } = useFetch('/works.json');
 
 const { response, data: items, error, loading } = useAxios(
-	'/works.json', 
+	"/works.json", 
 	{ method:'get'},
 	{
 		onSuccess: () => { 

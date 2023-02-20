@@ -26,9 +26,7 @@ const routes = [
 		path: '/portfolio/:id',
 		name: 'PortfolioDetailView',
 		component: PortfolioDetailView,
-		beforeEnter: (to, from) => {
-
-    },
+		beforeEnter: (to, from) => {},
 	},
 	{
 		path: '/lab',
@@ -45,9 +43,9 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory('/'),
 	routes,
-	scrollBehavior (to, from, savedPosition) {
-    return { left:0, top: 0 }
-  },
+	scrollBehavior(to, from, savedPosition) {
+		return { left: 0, top: 0 };
+	},
 });
 
 export default router;

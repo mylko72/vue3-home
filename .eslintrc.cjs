@@ -18,15 +18,15 @@ module.exports = {
 		ecmaVersion: '2022',
 		sourceType: 'module',
 	},
-	plugins: ["@typescript-eslint"],
+	plugins: ['@typescript-eslint'],
 	overrides: [
-    {
-      "files": ["*.js", "*.jsx"],
-      "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off"
-      }
-    }
-  ],
+		{
+			files: ['*.js', '*.jsx'],
+			rules: {
+				'@typescript-eslint/explicit-function-return-type': 'off',
+			},
+		},
+	],
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'prettier/prettier': [
