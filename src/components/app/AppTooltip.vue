@@ -1,43 +1,42 @@
 <template>
-  <div v-if="isHover" ref="tooltip" :style="[computedStyledObject, {'margin-left': '-90px'}]" :class="[{ show: isHover }, direction]" class="tooltip-view">
+  <div ref="tooltip" :style="[computedStyledObject, marginLeftStyle]" :class="[{ show: isHover }, direction]" class="tooltip-view">
     <div v-if="direction == 'top'" class="inner arrow-down">
       <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'top-right'" class="inner arrow-down">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'top-left'" class="inner arrow-down">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'bottom'" class="inner arrow-up">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'bottom-right'" class="inner arrow-up">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'bottom-left'" class="inner arrow-up">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'left'" class="inner arrow-right">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'left-up'" class="inner arrow-right">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'left-down'" class="inner arrow-right">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'right'" class="inner arrow-left">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else-if="direction == 'right-up'" class="inner arrow-left">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
     <div v-else class="inner arrow-left">
-      <p>툴팁은 {{ direction }}에서 나타납니다.</p>
+      <p>{{ infoTxt }}</p>
     </div>
   </div> 
-  {{ computedStyledObject }}
 </template>
 
 <script setup>
@@ -67,13 +66,14 @@ const styleObject = ref({
   height: 0
 });
 const marginLeftStyle = computed(() => {
+  if(props.isHover){
+    marginLeft.value = tooltip.value.clientWidth/2;
+  }
   return { 'margin-left' : `-${marginLeft.value}px`};
 })
 
 onMounted(() => {
-  if(props.isHover.value){
-    marginLeft.value = tooltip.value.clientWidth;
-  }
+  // marginLeft.value = tooltip.value.clientWidth;
 })
 
 // const computedStyledObject = computed(() => {

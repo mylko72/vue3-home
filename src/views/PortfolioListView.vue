@@ -79,9 +79,9 @@ const routeInfo = computed(() => {
 	return route.query.type ?? 'card-thumb';
 });
 
-console.log(route.query);
+// console.log(route.query);
 
-console.log('routeInfo', routeInfo.value);
+// console.log('routeInfo', routeInfo.value);
 
 const { response, data: items, error, loading } = useAxios(
 	'/works.json', 
@@ -130,20 +130,23 @@ const workItems = (work) => {
 const isHover = ref(false);
 const anchor1 = ref(null);
 const anchor2 = ref(null);
-const msg = ref(null);
+const msg = ref('썸네일로 보기');
 const styleObject = computed(() => {
-	return { top:0, left: 0 }
+	return { top: '-9999px', left: 0 }
 })
 const showTooltip = (el, info) => {
 	const { top, left, width, height } = el.getBoundingClientRect();
 	const { absTop, absLeft } = setPosition(top, left);
 	styleObject.value.top = (absTop - height)+'px';
+	// styleObject.value.left = absLeft+'px';
 	styleObject.value.left = (absLeft+(width/2))+'px';
+
 	msg.value = info;
 	isHover.value = true;
 }
 const hideTooltip = () => {
 	isHover.value = false;
+	styleObject.value.top = '-9999px';
 }
 
 const setPosition = (top, left) => {

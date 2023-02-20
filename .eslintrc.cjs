@@ -29,7 +29,6 @@ module.exports = {
   ],
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'prettier/prettier': [
 			'error',
 			{
@@ -41,6 +40,7 @@ module.exports = {
 				printWidth: 80,
 				bracketSpacing: true,
 				arrowParens: 'avoid',
+				endOfLine: 'auto', // 한줄 추가
 			},
 		],
 	},
