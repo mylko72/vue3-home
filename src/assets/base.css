@@ -105,7 +105,8 @@ a {text-decoration:none;}
 .tooltip-view .inner:before {position:absolute;content:'';width:8px;height:8px;border-width:1px 0 0 1px;border-style:solid;border-color:#ddd;background-color:#fff;}
 .tooltip-view .inner {max-width:320px;padding:4px 15px;border:1px solid #ddd;border-radius:6px;background:#fff;}
 .tooltip-view .inner > p {margin-bottom:0; font-size:.85rem;}
-.tooltip-view.show {margin-top:-10px;}
+.tooltip-view.top.show {margin-top:-5px;}
+.tooltip-view.bottom.show {margin-top:10px;}
 .tooltip-view.top .inner:before {bottom:-5px;left:50%;transform:rotate(-135deg)}
 .tooltip-view.bottom .inner:before {top:-5px;left:50%;transform:rotate(45deg)}
 .tooltip-view.left .inner:before {right:-5px;top:calc(50% - 4px);transform:rotate(135deg)}

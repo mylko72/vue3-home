@@ -10,7 +10,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : !isActive}" 
 							@click="viewType = 'card-list'"
-							@mouseenter="showTooltip($refs['anchor1'], '리스트로 보기')" 
+							@mouseenter="showTooltip($refs['anchor1'], { direction: 'top', msg: '리스트로 보기' })" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
@@ -20,7 +20,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : isActive}" 
 							@click="viewType = 'card-thumb'"
-							@mouseenter="showTooltip($refs['anchor2'], '썸네일로 보기')" 
+							@mouseenter="showTooltip($refs['anchor2'], { direction: 'bottom', msg: '썸네일로 보기' })" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
@@ -54,8 +54,9 @@
 				상세 이미지가 없습니다.
 			</div>
 		</Transition>
+
 		<Teleport to="body">
-			<AppTooltip :isHover="isHover" :computedStyledObject="styleObject" :infoTxt="msg" />
+			<AppTooltip @transfer="tooltipFn" :isHover="isHover" :position="tooltipStyle" :direction="tooltipDirection" :message="tooltipTxt" />
 		</Teleport>
 	</div>
 </template>
@@ -130,36 +131,58 @@ const workItems = (work) => {
 const isHover = ref(false);
 const anchor1 = ref(null);
 const anchor2 = ref(null);
-const msg = ref('썸네일로 보기');
-const styleObject = computed(() => {
+const calcPos = ref({top:0, left:0});
+const tooltipTxt = ref('썸네일로 보기');
+const tooltipDirection = ref(null);
+const tooltipStyle = computed(() => {
 	return { top: '-9999px', left: 0 }
-})
-const showTooltip = (el, info) => {
-	const { top, left, width, height } = el.getBoundingClientRect();
-	const { absTop, absLeft } = setPosition(top, left);
-	styleObject.value.top = (absTop - height)+'px';
-	// styleObject.value.left = absLeft+'px';
-	styleObject.value.left = (absLeft+(width/2))+'px';
+});
 
-	msg.value = info;
+const showTooltip = (el, params) => {
+	// const { top, left, width, height } = el.getBoundingClientRect();
+	const { msg, direction } = params;
+	const clientRect = el.getBoundingClientRect();
+	const { top, left } = calcPosition(params.direction, clientRect);
+
+	tooltipStyle.value.top = top+'px';
+	tooltipStyle.value.left = left+'px';
+	tooltipTxt.value = msg;
+	tooltipDirection.value = direction;
 	isHover.value = true;
 }
 const hideTooltip = () => {
 	isHover.value = false;
-	styleObject.value.top = '-9999px';
+	tooltipStyle.value.top = '-9999px';
 }
 
-const setPosition = (top, left) => {
+const tooltipFn = (features) => {
+	const { width, height } = features.value;
+}
+
+const calcPosition = (direction, clientRect) => {
+	const { top, left, height, width } = clientRect;
+	const absTop = window.pageYOffset + top;
+	const absLeft = window.pageXOffset + left;
+
+	if(direction === 'top'){
+		calcPos.value.top = absTop - height;
+		calcPos.value.left = absLeft+(width/2);
+	}else if(direction === 'bottom'){
+		calcPos.value.top = absTop + height;
+		calcPos.value.left = absLeft+(width/2);
+	}else if(direction === 'left'){
+		calcPos.value.top = absTop + (height/8);
+		calcPos.value.left = absLeft;
+	}else if(direction === 'right'){
+		calcPos.value.top = absTop + (height/8);
+		calcPos.value.left = absLeft + width;
+	}
+
 	return {
-		absTop: window.pageYOffset + top,
-		absLeft: window.pageXOffset + left
+		top: calcPos.value.top,
+		left: calcPos.value.left
 	}
 }
-
-onMounted(() => {
-	// console.log(anchor1.value)
-	// console.log(anchor2.value)
-})
 
 const router = useRouter();
 const goDetail = (id, $event) => {
