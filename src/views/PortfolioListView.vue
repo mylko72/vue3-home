@@ -56,7 +56,7 @@
 		</Transition>
 
 		<Teleport to="body">
-			<AppTooltip @transfer="tooltipFn" :isHover="isHover" :position="tooltipStyle" :direction="tooltipDirection" :message="tooltipTxt" />
+			<AppTooltip :isHover="isHover" :position="tooltipStyle" :direction="tooltipDirection" :message="tooltipTxt" />
 		</Teleport>
 	</div>
 </template>
@@ -134,8 +134,21 @@ const anchor2 = ref(null);
 const calcPos = ref({top:0, left:0});
 const tooltipTxt = ref('썸네일로 보기');
 const tooltipDirection = ref(null);
-const tooltipStyle = computed(() => {
-	return { top: '-9999px', left: 0 }
+// const tooltipStyle = computed(() => {
+// 	return { top: '-9999px', left: 0 }
+// });
+const tooltipValue = ref({ top:'-9999px', left:0 })
+const tooltipStyle = computed({
+	get(){
+		return {
+			top: tooltipValue.value.top,
+			left: tooltipValue.value.left
+		}
+	},
+	set(x, y){
+		tooltipValue.value.left = x;
+		tooltipValue.value.top = y;
+	}
 });
 
 const showTooltip = (el, params) => {
@@ -153,10 +166,6 @@ const showTooltip = (el, params) => {
 const hideTooltip = () => {
 	isHover.value = false;
 	tooltipStyle.value.top = '-9999px';
-}
-
-const tooltipFn = (features) => {
-	const { width, height } = features.value;
 }
 
 const calcPosition = (direction, clientRect) => {

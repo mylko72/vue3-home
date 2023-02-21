@@ -59,15 +59,10 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['transfer'])
-
 const tooltip = ref(null);
-const tooltipSpec = ref({
-  width: 0,
-  height: 0
-});
 const marginLeft = ref(0);
 const marginLeftSty = computed(() => {
+  marginLeft.value = 0;
   if(props.isHover){
     if(props.direction === 'top' || props.direction === 'bottom'){
       marginLeft.value = -(tooltip.value.clientWidth/2);
@@ -76,7 +71,6 @@ const marginLeftSty = computed(() => {
     }else if(props.direction === 'right'){
       marginLeft.value = 10;
     }
-
   }else{
     marginLeft.value = 0;
   }

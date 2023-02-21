@@ -5,6 +5,7 @@ import PortfolioListView from '@/views/PortfolioListView.vue';
 import PortfolioDetailView from '@/views/PortfolioDetailView.vue';
 import LabView from '@/views/LabView.vue';
 import BookMarkView from '@/views/BookMarkView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const routes = [
 	{
@@ -26,7 +27,6 @@ const routes = [
 		path: '/portfolio/:id',
 		name: 'PortfolioDetailView',
 		component: PortfolioDetailView,
-		beforeEnter: (to, from) => {},
 	},
 	{
 		path: '/lab',
@@ -38,12 +38,17 @@ const routes = [
 		name: 'BookMarkView',
 		component: BookMarkView,
 	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'NotFound',
+		component: NotFoundView,
+	},
 ];
 
 const router = createRouter({
 	history: createWebHistory('/'),
 	routes,
-	scrollBehavior(to, from, savedPosition) {
+	scrollBehavior() {
 		return { left: 0, top: 0 };
 	},
 });
