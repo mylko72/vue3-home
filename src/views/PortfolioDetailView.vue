@@ -8,7 +8,15 @@
       <template v-else-if="workItem">
         <div class="view-tit">
           <h3>{{ workItem.project }}</h3>
-          <button type="button" class="btn prev-btn" @click.prevent="goList"><i class="bi bi-chevron-left"></i></button>
+          <button 
+            type="button" 
+            ref="prev" 
+            class="btn prev-btn" 
+            @click.prevent="goList" 
+            @mouseenter="showTooltip('left', '이전으로 가기')" 
+            @mouseout="hideTooltip">
+            <i class="bi bi-chevron-left"></i>
+          </button>
         </div>
         <hr />
         <div class="row flex-column flex-md-row mt-4 g-3">
@@ -31,6 +39,9 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
+    <Teleport to="body">
+			<AppTooltip :isHover="hover" :left="anchorLeft" :top="anchorTop" :direction="tooltipDirection" :message="tooltipMsg" />
+		</Teleport>
   </div>
 </template>
 
@@ -53,6 +64,8 @@ export default{
 import { ref } from '@vue/reactivity';
 import { useRoute, useRouter } from 'vue-router';
 import { useAxios } from '@/composables/useAxios';
+import AppTooltip from '@/components/app/AppTooltip.vue';
+import { useTooltip } from '@/composables/useTooltip';
 
 const workItem = ref({
   project: null,
@@ -78,6 +91,24 @@ const { response, data: items, error, loading } = useAxios(
 		}
 	}
 );
+
+const hover = ref(false);
+const prev = ref(null);
+const tooltipMsg = ref('');
+const tooltipDirection = ref(null);
+
+const { anchorTop, anchorLeft } = useTooltip(
+	{'anchor': prev, 'direction': 'left'}
+);
+
+const showTooltip = (direction, message) => {
+	hover.value = true;
+	tooltipDirection.value = direction;
+	tooltipMsg.value = message;
+}
+const hideTooltip = () => {
+	hover.value = false;
+}
 
 const goList = () => {
   router.push({name: routeInfo.name, query: queryInfo.value})
