@@ -1,39 +1,6 @@
 <template>
   <div ref="tooltip" :style="[position, marginLeftSty]" :class="[{ show: isHover }, direction]" class="tooltip-view">
-    <div v-if="direction == 'top'" class="inner arrow-down">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'top-right'" class="inner arrow-down">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'top-left'" class="inner arrow-down">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'bottom'" class="inner arrow-up">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'bottom-right'" class="inner arrow-up">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'bottom-left'" class="inner arrow-up">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'left'" class="inner arrow-right">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'left-up'" class="inner arrow-right">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'left-down'" class="inner arrow-right">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'right'" class="inner arrow-left">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else-if="direction == 'right-up'" class="inner arrow-left">
-      <p>{{ message }}</p>
-    </div>
-    <div v-else class="inner arrow-left">
+    <div class="inner arrow-down">
       <p>{{ message }}</p>
     </div>
   </div> 
@@ -76,19 +43,6 @@ const marginLeftSty = computed(() => {
   }
   return { 'margin-left' : `${marginLeft.value}px`};
 })
-
-onMounted(() => {
-  // marginLeft.value = tooltip.value.clientWidth;
-})
-
-// const position = computed(() => {
-//   return {
-//     display: 'inline-block',
-//     left: styleObject.value.left + 'px',
-//     top: styleObject.value.top + 'px'
-//   }  
-// })
-
 </script>
 
 <style scoped>

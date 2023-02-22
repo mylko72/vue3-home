@@ -67,6 +67,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useAxios } from '@/composables/useAxios';
 import WorkItem from '@/components/WorkItem.vue';
 import AppTooltip from '@/components/app/AppTooltip.vue';
+import { useTooltip } from '@/composables/useTooltip';
 
 const cardItems = ref(null);
 const isAlert = ref(false);
@@ -128,40 +129,45 @@ const workItems = (work) => {
 	}
 }
 
+// const { hover, direction, position, message } = useTooltip();
+
 const isHover = ref(false);
 const anchor1 = ref(null);
 const anchor2 = ref(null);
 const calcPos = ref({top:0, left:0});
+
 const tooltipTxt = ref('썸네일로 보기');
 const tooltipDirection = ref(null);
-// const tooltipStyle = computed(() => {
-// 	return { top: '-9999px', left: 0 }
-// });
-const tooltipValue = ref({ top:'-9999px', left:0 })
-const tooltipStyle = computed({
-	get(){
-		return {
-			top: tooltipValue.value.top,
-			left: tooltipValue.value.left
-		}
-	},
-	set(x, y){
-		tooltipValue.value.left = x;
-		tooltipValue.value.top = y;
-	}
+const tooltipStyle = computed(() => {
+	return { top: '-9999px', left: 0 }
 });
+// const tooltipValue = ref({ top:'-9999px', left:0 })
+// const tooltipStyle = computed({
+// 	get(){
+// 		return {
+// 			top: tooltipValue.value.top,
+// 			left: tooltipValue.value.left
+// 		}
+// 	},
+// 	set(x, y){
+// 		console.log('x', x);
+// 		console.log('y', y);
+// 		tooltipValue.value.left = x;
+// 		tooltipValue.value.top = y;
+// 	}
+// });
 
 const showTooltip = (el, params) => {
-	// const { top, left, width, height } = el.getBoundingClientRect();
 	const { msg, direction } = params;
 	const clientRect = el.getBoundingClientRect();
 	const { top, left } = calcPosition(params.direction, clientRect);
-
+	
+	isHover.value = true;
 	tooltipStyle.value.top = top+'px';
 	tooltipStyle.value.left = left+'px';
 	tooltipTxt.value = msg;
 	tooltipDirection.value = direction;
-	isHover.value = true;
+	console.log(tooltipStyle.value)
 }
 const hideTooltip = () => {
 	isHover.value = false;
