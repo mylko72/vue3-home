@@ -10,7 +10,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : !isActive}" 
 							@click="viewType = 'card-list'"
-							@mouseenter="showTooltip($refs['anchor1'], { direction: 'top', msg: '리스트로 보기' })" 
+							@mouseenter="showTooltip('top', '리스트로 보기')" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
@@ -20,7 +20,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : isActive}" 
 							@click="viewType = 'card-thumb'"
-							@mouseenter="showTooltip($refs['anchor2'], { direction: 'bottom', msg: '썸네일로 보기' })" 
+							@mouseenter="showTooltip('bottom', '썸네일로 보기')" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
@@ -56,7 +56,7 @@
 		</Transition>
 
 		<Teleport to="body">
-			<AppTooltip :isHover="isHover" :position="tooltipStyle" :direction="tooltipDirection" :message="tooltipTxt" />
+			<AppTooltip :isHover="hover" :left="anchorLeft" :top="anchorTop" :direction="tooltipDirection" :message="tooltipMsg" />
 		</Teleport>
 	</div>
 </template>
@@ -80,10 +80,6 @@ const route = useRoute();
 const routeInfo = computed(() => {
 	return route.query.type ?? 'card-thumb';
 });
-
-// console.log(route.query);
-
-// console.log('routeInfo', routeInfo.value);
 
 const { response, data: items, error, loading } = useAxios(
 	'/works.json', 
@@ -129,74 +125,24 @@ const workItems = (work) => {
 	}
 }
 
-// const { hover, direction, position, message } = useTooltip();
-
-const isHover = ref(false);
+const hover = ref(false);
 const anchor1 = ref(null);
 const anchor2 = ref(null);
-const calcPos = ref({top:0, left:0});
-
-const tooltipTxt = ref('썸네일로 보기');
+const tooltipMsg = ref('썸네일로 보기');
 const tooltipDirection = ref(null);
-const tooltipStyle = computed(() => {
-	return { top: '-9999px', left: 0 }
-});
-// const tooltipValue = ref({ top:'-9999px', left:0 })
-// const tooltipStyle = computed({
-// 	get(){
-// 		return {
-// 			top: tooltipValue.value.top,
-// 			left: tooltipValue.value.left
-// 		}
-// 	},
-// 	set(x, y){
-// 		console.log('x', x);
-// 		console.log('y', y);
-// 		tooltipValue.value.left = x;
-// 		tooltipValue.value.top = y;
-// 	}
-// });
 
-const showTooltip = (el, params) => {
-	const { msg, direction } = params;
-	const clientRect = el.getBoundingClientRect();
-	const { top, left } = calcPosition(params.direction, clientRect);
-	
-	isHover.value = true;
-	tooltipStyle.value.top = top+'px';
-	tooltipStyle.value.left = left+'px';
-	tooltipTxt.value = msg;
+const { anchorTop, anchorLeft } = useTooltip(
+	{'anchor': anchor1, 'direction': 'top'},
+	{'anchor': anchor2, 'direction': 'bottom'},
+);
+
+const showTooltip = (direction, message) => {
+	hover.value = true;
 	tooltipDirection.value = direction;
-	console.log(tooltipStyle.value)
+	tooltipMsg.value = message;
 }
 const hideTooltip = () => {
-	isHover.value = false;
-	tooltipStyle.value.top = '-9999px';
-}
-
-const calcPosition = (direction, clientRect) => {
-	const { top, left, height, width } = clientRect;
-	const absTop = window.pageYOffset + top;
-	const absLeft = window.pageXOffset + left;
-
-	if(direction === 'top'){
-		calcPos.value.top = absTop - height;
-		calcPos.value.left = absLeft+(width/2);
-	}else if(direction === 'bottom'){
-		calcPos.value.top = absTop + height;
-		calcPos.value.left = absLeft+(width/2);
-	}else if(direction === 'left'){
-		calcPos.value.top = absTop + (height/8);
-		calcPos.value.left = absLeft;
-	}else if(direction === 'right'){
-		calcPos.value.top = absTop + (height/8);
-		calcPos.value.left = absLeft + width;
-	}
-
-	return {
-		top: calcPos.value.top,
-		left: calcPos.value.left
-	}
+	hover.value = false;
 }
 
 const router = useRouter();

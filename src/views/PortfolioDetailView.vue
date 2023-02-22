@@ -6,7 +6,7 @@
 				<span class="text-muted">{{ error.message }}</span>
 			</div>
       <template v-else-if="workItem">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="view-tit">
           <h3>{{ workItem.project }}</h3>
           <button type="button" class="btn prev-btn" @click.prevent="goList"><i class="bi bi-chevron-left"></i></button>
         </div>

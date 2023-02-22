@@ -1,5 +1,5 @@
 <template>
-  <div ref="tooltip" :style="[position, marginLeftSty]" :class="[{ show: isHover }, direction]" class="tooltip-view">
+  <div ref="tooltip" :style="[{ 'left': left, 'top': top }, marginLeftSty]" :class="[{ show: isHover }, direction]" class="tooltip-view">
     <div class="inner arrow-down">
       <p>{{ message }}</p>
     </div>
@@ -15,9 +15,15 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  position: {
-    type: Object,
+  left: {
+    type: String,
   },
+  top: {
+    type: String,
+  },  
+  // position: {
+  //   type: Object,
+  // },
   message: {
     type: String,
   },
