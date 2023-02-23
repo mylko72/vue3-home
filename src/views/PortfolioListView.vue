@@ -10,7 +10,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : !isActive}" 
 							@click="viewType = 'card-list'"
-							@mouseenter="showTooltip('top', '리스트로 보기')" 
+							@mouseenter="showTooltip" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
@@ -20,7 +20,7 @@
 							class="btn btn-outline-secondary ico-tooltip" 
 							:class="{'active' : isActive}" 
 							@click="viewType = 'card-thumb'"
-							@mouseenter="showTooltip('bottom', '썸네일로 보기')" 
+							@mouseenter="showTooltip" 
 							@mouseout="hideTooltip">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
@@ -56,7 +56,7 @@
 		</Transition>
 
 		<Teleport to="body">
-			<AppTooltip :isHover="hover" :left="anchorLeft" :top="anchorTop" :direction="tooltipDirection" :message="tooltipMsg" />
+			<AppTooltip :isHover="hover" :left="anchorLeft" :top="anchorTop" :direction="anchorDirection" :message="anchorMessage" />
 		</Teleport>
 	</div>
 </template>
@@ -128,18 +128,18 @@ const workItems = (work) => {
 const hover = ref(false);
 const anchor1 = ref(null);
 const anchor2 = ref(null);
-const tooltipMsg = ref('썸네일로 보기');
-const tooltipDirection = ref(null);
+// const tooltipMsg = ref('썸네일로 보기');
+// const tooltipDirection = ref(null);
 
-const { anchorTop, anchorLeft } = useTooltip(
-	{'anchor': anchor1, 'direction': 'top'},
-	{'anchor': anchor2, 'direction': 'bottom'},
+const { anchorTop, anchorLeft, anchorDirection, anchorMessage } = useTooltip(
+	{'anchor': anchor1, 'direction': 'top', 'message': '리스트로 보기'},
+	{'anchor': anchor2, 'direction': 'bottom', 'message': '썸네일로 보기'},
 );
 
-const showTooltip = (direction, message) => {
+const showTooltip = () => {
 	hover.value = true;
-	tooltipDirection.value = direction;
-	tooltipMsg.value = message;
+	// tooltipDirection.value = direction;
+	// tooltipMsg.value = message;
 }
 const hideTooltip = () => {
 	hover.value = false;

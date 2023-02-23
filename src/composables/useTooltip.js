@@ -4,8 +4,11 @@ import { onMounted, onUnmounted } from 'vue';
 export const useTooltip = (...paramObjs) => {
 	const anchorTop = ref('0');
 	const anchorLeft = ref('0');
+  const anchorDirection = ref(null);
+  const anchorMessage = ref('');
 	const anchor = [];
 	const direction = [];
+  const message = [];
 	let index = 0;
 
 	function calcPosition(direction, clientRect) {
@@ -35,17 +38,19 @@ export const useTooltip = (...paramObjs) => {
 		};
 	}
 
-	function updatePosition(anchor, direction) {
+	function setTooltip(anchor, direction, message) {
 		const clientRect = anchor.getBoundingClientRect();
 
-		console.log('direction', direction);
+		// console.log('direction', direction);
 		const { top, left } = calcPosition(direction, clientRect);
 
 		anchorTop.value = top + 'px';
 		anchorLeft.value = left + 'px';
+    anchorDirection.value = direction;
+    anchorMessage.value = message;
 
-		console.log('top', anchorTop.value);
-		console.log('left', anchorLeft.value);
+		// console.log('top', anchorTop.value);
+		// console.log('left', anchorLeft.value);
 	}
 
 	function resetPosition() {
@@ -57,15 +62,18 @@ export const useTooltip = (...paramObjs) => {
 		for (let obj of paramObjs) {
 			anchor[index] = obj.anchor;
 			direction[index] = obj.direction;
+      message[index] = obj.message;
 			index++;
 		}
 
 		anchor.forEach((item, i) => {
 			const tooltipAnchor = item.value;
 			const tooltipDirection = direction[i];
+      const tooltipMessage = message[i];
 
 			tooltipAnchor.addEventListener('mouseenter', () => {
-				updatePosition(tooltipAnchor, tooltipDirection);
+				// updatePosition(tooltipAnchor, tooltipDirection);
+        setTooltip(tooltipAnchor, tooltipDirection, tooltipMessage);
 			});
 
 			tooltipAnchor.addEventListener('mouseout', () => {
@@ -79,5 +87,7 @@ export const useTooltip = (...paramObjs) => {
 	return {
 		anchorTop,
 		anchorLeft,
+    anchorDirection,
+    anchorMessage
 	};
 };
