@@ -1,7 +1,7 @@
 <template>
 	<div class="container py-5">
 		<div class="col-xl-12 col-xxl-11 mx-auto">
-			<h2 class="mb-4">Bookmark</h2>			
+			<h2 class="mb-4">Bookmark {{ viewPort }}</h2>			
 			<div class="row ps-3">
 				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }" :style="{'left': isFixed ? absLeft+'px' : 'unset' }">
 					<ul class="bookmark-menu">
@@ -35,7 +35,7 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { useAxios } from '@/composables/useAxios';
-import { computed, onMounted, onUnmounted } from '@vue/runtime-core';
+import { computed, inject, onMounted, onUnmounted } from '@vue/runtime-core';
 import { useScroll } from '@/composables/useScroll';
 
 const bookmarkLists = ref([]);
@@ -67,17 +67,14 @@ const isFixed = computed(() => {
 	return pageYOffset.value > absTop.value;
 });
 
-const winWidth = ref(0);
+const viewPort = computed(() => {
+	const viewMode = inject('viewport');
+	console.log('viewMode', viewMode.value.name);
+	return viewMode;
+});
 
-onMounted(() => {
-	window.addEventListener('load', () => winWidth.value = window.innerWidth);
-	window.addEventListener('resize', () => winWidth.value = window.innerWidth);
-})
-
-onUnmounted(() => {
-	window.removeEventListener('load', () => winWidth.value = window.innerWidth);
-	window.removeEventListener('resize', () => winWidth.value = window.innerWidth);
-})
+// const viewPort = inject('viewport');
+// console.log(viewPort.value);
 
 </script>
 
