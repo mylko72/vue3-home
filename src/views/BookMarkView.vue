@@ -1,7 +1,7 @@
 <template>
 	<div class="container py-5">
 		<div class="col-xl-12 col-xxl-11 mx-auto">
-			<h2 class="mb-4">Bookmark {{ viewPort.mode }}</h2>			
+			<h2 class="mb-4">Bookmark</h2>			
 			<div class="row ps-3">
 				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }" :style="{'left': isFixed ? absLeft+'px' : 'unset' }">
 					<ul class="bookmark-menu">
@@ -72,9 +72,6 @@ const viewPort = computed(() => {
 	console.log('viewMode', mode);
 	return { mode, size };
 });
-
-// const viewPort = inject('viewport');
-// console.log(viewPort.value);
 
 </script>
 
