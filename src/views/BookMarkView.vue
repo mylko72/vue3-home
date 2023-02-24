@@ -35,7 +35,7 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { useAxios } from '@/composables/useAxios';
-import { computed, onMounted, onUnmounted } from '@vue/runtime-core';
+import { computed, inject, onMounted, onUnmounted } from '@vue/runtime-core';
 import { useScroll } from '@/composables/useScroll';
 
 const bookmarkLists = ref([]);
@@ -67,17 +67,11 @@ const isFixed = computed(() => {
 	return pageYOffset.value > absTop.value;
 });
 
-const winWidth = ref(0);
-
-onMounted(() => {
-	window.addEventListener('load', () => winWidth.value = window.innerWidth);
-	window.addEventListener('resize', () => winWidth.value = window.innerWidth);
-})
-
-onUnmounted(() => {
-	window.removeEventListener('load', () => winWidth.value = window.innerWidth);
-	window.removeEventListener('resize', () => winWidth.value = window.innerWidth);
-})
+const viewPort = computed(() => {
+	const { mode, size } = inject('viewport');
+	console.log('viewMode', mode);
+	return { mode, size };
+});
 
 </script>
 

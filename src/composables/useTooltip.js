@@ -4,15 +4,15 @@ import { onMounted, onUnmounted } from 'vue';
 export const useTooltip = (...paramObjs) => {
 	const anchorTop = ref('-9999x');
 	const anchorLeft = ref('0px');
-  const anchorDirection = ref(null);
-  const anchorMessage = ref(null);
-  const anchorHover = ref(null);
+	const anchorDirection = ref(null);
+	const anchorMessage = ref(null);
+	const anchorHover = ref(null);
 	const anchor = [];
 	const direction = [];
-  const message = [];
+	const message = [];
 	let index = 0;
 
-  console.log(paramObjs[0].message)
+	console.log(paramObjs[0].message);
 
 	function calcPosition(direction, clientRect) {
 		const { top, left, height, width } = clientRect;
@@ -47,10 +47,10 @@ export const useTooltip = (...paramObjs) => {
 
 		anchorTop.value = top + 'px';
 		anchorLeft.value = left + 'px';
-    anchorDirection.value = direction;
-    anchorMessage.value = message;
+		anchorDirection.value = direction;
+		anchorMessage.value = message;
 
-    return anchorMessage;
+		return anchorMessage;
 	}
 
 	function resetPosition() {
@@ -62,25 +62,29 @@ export const useTooltip = (...paramObjs) => {
 		for (let obj of paramObjs) {
 			anchor[index] = obj.anchor;
 			direction[index] = obj.direction;
-      message[index] = obj.message;
+			message[index] = obj.message;
 			index++;
 		}
 
 		anchor.forEach((item, i) => {
 			const tooltipAnchor = item.value;
 			const tooltipDirection = direction[i];
-      const tooltipMessage = message[i];
+			const tooltipMessage = message[i];
 
 			tooltipAnchor.addEventListener('mouseenter', async () => {
-        const resultMsg = await setTooltip(tooltipAnchor, tooltipDirection, tooltipMessage);
-        if(resultMsg !== null){
-          anchorHover.value = true;
-        }
+				const resultMsg = await setTooltip(
+					tooltipAnchor,
+					tooltipDirection,
+					tooltipMessage,
+				);
+				if (resultMsg !== null) {
+					anchorHover.value = true;
+				}
 			});
 
 			tooltipAnchor.addEventListener('mouseout', () => {
 				resetPosition();
-        anchorHover.value = false;
+				anchorHover.value = false;
 			});
 		});
 	});
@@ -90,8 +94,8 @@ export const useTooltip = (...paramObjs) => {
 	return {
 		anchorTop,
 		anchorLeft,
-    anchorDirection,
-    anchorMessage,
-    anchorHover
+		anchorDirection,
+		anchorMessage,
+		anchorHover,
 	};
 };
