@@ -1,35 +1,34 @@
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 export default {
-  install(app, options){
+	install(app, options) {
+		const $viewport = reactive({
+			mode: 'mobile',
+			size: {
+				width: 0,
+				height: 0,
+			},
+		});
 
-    const $viewport = ref({
-      name: 'mobile',
-      size: {
-        width: 0,
-        height: 0
-      }
-    });
+		updateSize();
 
-    updateSize();
+		function updateSize() {
+			const winWidth = window.innerWidth;
 
-    function updateSize(){
-      const winWidth = window.innerWidth;
+			if (winWidth < 768) {
+				$viewport.mode = 'mobile';
+			} else if (winWidth >= 768 && winWidth < 992) {
+				$viewport.mode = 'tablet';
+			} else {
+				$viewport.mode = 'desktop';
+			}
 
-      if(winWidth < 768){
-        $viewport.value.name = 'mobile';
-      }else if(winWidth >= 768 && winWidth < 992){
-        $viewport.value.name = 'tablet';
-      }else {
-        $viewport.value.name = 'desktop';
-      }
+			$viewport.size.width = window.innerWidth;
+			$viewport.size.height = window.innerHeight;
+		}
 
-      $viewport.value.size.width = window.innerWidth;
-      $viewport.value.size.height = window.innerHeight;
-    }    
+		window.addEventListener('resize', updateSize);
 
-    window.addEventListener('resize', updateSize);
-  
-    app.provide('viewport', $viewport);
-  }
-}
+		app.provide('viewport', $viewport);
+	},
+};
