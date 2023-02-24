@@ -21,9 +21,6 @@ const props = defineProps({
   top: {
     type: String,
   },  
-  // position: {
-  //   type: Object,
-  // },
   message: {
     type: String,
   },
