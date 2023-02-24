@@ -12,9 +12,7 @@
             type="button" 
             ref="prev" 
             class="btn prev-btn" 
-            @click.prevent="goList" 
-            @mouseenter="showTooltip" 
-            @mouseout="hideTooltip">
+            @click.prevent="goList">
             <i class="bi bi-chevron-left"></i>
           </button>
         </div>
@@ -40,7 +38,7 @@
       </div>
     </div>
     <Teleport to="body">
-			<AppTooltip :isHover="hover" :left="anchorLeft" :top="anchorTop" :direction="anchorDirection" :message="anchorMessage" />
+			<AppTooltip :isHover="anchorHover" :left="anchorLeft" :top="anchorTop" :direction="anchorDirection" :message="anchorMessage" />
 		</Teleport>
   </div>
 </template>
@@ -92,21 +90,11 @@ const { response, data: items, error, loading } = useAxios(
 	}
 );
 
-const hover = ref(false);
 const prev = ref(null);
-const tooltipMsg = ref('');
-const tooltipDirection = ref(null);
 
-const { anchorTop, anchorLeft, anchorDirection, anchorMessage } = useTooltip(
+const { anchorTop, anchorLeft, anchorDirection, anchorMessage, anchorHover } = useTooltip(
 	{'anchor': prev, 'direction': 'left', 'message': '이전으로 가기'}
 );
-
-const showTooltip = () => {
-	hover.value = true;
-}
-const hideTooltip = () => {
-	hover.value = false;
-}
 
 const goList = () => {
   router.push({name: routeInfo.name, query: queryInfo.value})
