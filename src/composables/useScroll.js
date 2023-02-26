@@ -13,6 +13,7 @@ export const useScroll = (options = {}) => {
 	}
 
 	function updateAbsPos(target) {
+    if(target === null) return false;
 		const { top, left } = target.value.getBoundingClientRect();
 		absTop.value = top + window.pageYOffset;
 		absLeft.value = left + window.pageXOffset;
@@ -32,6 +33,7 @@ export const useScroll = (options = {}) => {
 		window.addEventListener('scroll', update);
 
 		window.addEventListener('resize', () => {
+      console.log('target', target);
 			target && updateAbsPos(target);
 		});
 	});
