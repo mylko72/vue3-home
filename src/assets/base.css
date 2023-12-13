@@ -222,7 +222,8 @@ footer .nav-link {color:#fff}
 .my-history .ico-history {position:absolute; left:0; font-size:20em; opacity:.05; transform:rotate(-18deg);}
 
 .css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:0; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
-.css-shapes-preview.fixed {position:fixed; top:0; left:70px; width:0;}
+.css-shapes-preview.fixed {position:fixed; top:0; left:70px; width:0; z-index:10;}
+.mobile .css-shapes-preview.fixed {width:auto; height:auto}
 .bookmark-menu {position:absolute; left:-90px; top:10px; width:175px; padding-left:0}
 .bookmark-menu > li {padding-left:14px; border-bottom:1px dotted #FF746C; font-size:1rem; line-height:250%; color:#fff; -webkit-transition:all .5s ease;}
 .bookmark-menu > li.sel {border: 0px solid #ff0000; border-radius: 5px; background-color:#bf0000; transform:scale(1.4); }
