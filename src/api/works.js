@@ -1,5 +1,19 @@
 const works = [
 	{
+		project: '케이뱅크 개선 및 운영',
+		thumbnail: '/src/assets/images/img_ssfshop_s.jpg',
+		images: [
+			'/src/assets/images/img_ssfshop_01.jpg',
+			'/src/assets/images/img_ssfshop_02.jpg',
+		],
+		company: '유플리트',
+		client: '케이뱅크',
+		date: '2023.03 ~ 2023.12',
+		task: '모바일 앱 UI 스크립트 개선',
+		desc: '공통 UI 개선 및 컴포넌트 개발',
+		url: 'https://www.kbanknow.com/',
+	},
+	{
 		project: '삼성물산 패션몰 개선 및 운영',
 		thumbnail: '/src/assets/images/img_ssfshop_s.jpg',
 		images: [
