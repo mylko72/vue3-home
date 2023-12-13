@@ -1,10 +1,16 @@
 <template>
-	<div class="container py-5">
+	<div class="container py-5" :class="viewPort.mode">
 		<div class="col-xl-12 col-xxl-11 mx-auto">
 			<h2 class="mb-4">Bookmark</h2>			
-			<div class="row ps-3">
-				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }" :style="{'left': isFixed ? absLeft+'px' : 'unset' }">
-					<ul class="bookmark-menu">
+			<div class="row ps-3" :style="{'padding-top': fixedSelect ? '150px' : '0' }">
+				<div class="col-md-1 col-lg-2 css-shapes-preview" ref="el" :class="{ 'fixed' : isFixed }" :style="{'left': leftSty, 'right': viewPort.mode === 'mobile' && leftSty }">
+					<select v-if="fixedSelect" class="form-select" aria-label="Default select example" @change="changeScroll($event)">
+						<option selected>Open this select menu</option>
+						<template v-for="(name, index) in bookmarkKeys" :key="index">
+							<option :value="name">{{ name }}</option>
+						</template>
+					</select>
+					<ul v-else class="bookmark-menu">
 						<li v-for="(name, index) in bookmarkKeys" :key="index">
 							<a href="#" @click.prevent="goScroll(name)">{{ name }}</a>
 						</li>
@@ -35,7 +41,7 @@
 <script setup>
 import { ref } from '@vue/reactivity';
 import { useAxios } from '@/composables/useAxios';
-import { computed, onMounted, onUnmounted } from '@vue/runtime-core';
+import { computed, inject, onMounted, onUnmounted } from '@vue/runtime-core';
 import { useScroll } from '@/composables/useScroll';
 
 const bookmarkLists = ref([]);
@@ -60,6 +66,14 @@ const goScroll = (target) => {
 	elem.scrollIntoView({behavior: 'smooth'});
 }
 
+const changeScroll = (event) => {
+	const target = event.target.value;
+	const targetId = target.split('.')[0].toLowerCase();
+	const elem = document.querySelector('#'+targetId);
+	const absTop = elem.getBoundingClientRect().top + window.pageYOffset - 150;
+	window.scrollTo(0, absTop);
+}
+
 const el = ref(null);
 const { pageYOffset, absTop, absLeft } = useScroll({ target: el });
 
@@ -67,17 +81,18 @@ const isFixed = computed(() => {
 	return pageYOffset.value > absTop.value;
 });
 
-const winWidth = ref(0);
+const leftSty = computed(() => {
+	return isFixed.value ? absLeft.value+'px' : '0'
+});
 
-onMounted(() => {
-	window.addEventListener('load', () => winWidth.value = window.innerWidth);
-	window.addEventListener('resize', () => winWidth.value = window.innerWidth);
+const fixedSelect = computed(() => {
+	return isFixed.value && viewPort.value.mode === 'mobile';
 })
 
-onUnmounted(() => {
-	window.removeEventListener('load', () => winWidth.value = window.innerWidth);
-	window.removeEventListener('resize', () => winWidth.value = window.innerWidth);
-})
+const viewPort = computed(() => {
+	const { mode, size } = inject('viewport');
+	return { mode, size };
+});
 
 </script>
 

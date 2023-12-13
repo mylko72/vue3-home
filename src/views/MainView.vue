@@ -28,7 +28,7 @@
         <span class="visually-hidden">Loading...</span>
       </div>
 		</div>
-		<div class="my-ability active">
+		<div ref="ability" class="my-ability" :class="{ 'active': isInView }">
 			<div class="container">
 				<div class="row g-3">
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
@@ -109,10 +109,26 @@ import WorkItem from '@/components/WorkItem.vue';
 import { useRouter } from "vue-router";
 import { useFetch } from '@/composables/fetch';
 import { useAxios } from '@/composables/useAxios';
+import { computed, inject } from '@vue/runtime-core';
+import { onMounted, onUnmounted } from "vue";
 
 const cardItems = ref(null);
 const limit = 6;
 const router = useRouter();
+const util = inject('util');
+const ability = ref(null);
+const isInView = ref(false); 
+const scrollInView = () => {
+	isInView.value = util.isElementInViewport(ability.value);
+}
+
+onMounted(() => {
+	window.addEventListener('scroll', scrollInView);
+});
+
+onUnmounted(() => {
+	window.removeEventListener('scroll', scrollInView);
+});
 
 // const { response, error, isLoading } = useFetch('/works.json');
 const { response, data: items, error, loading } = useAxios(
@@ -151,12 +167,5 @@ const goDetail = (id) => {
 </script>
 
 <style scoped>
-.key-visual {
-	height: 500px;
-	background-image: url(/assets/images/img_winter.jpg);
-	background-position: 50% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
+
 </style>

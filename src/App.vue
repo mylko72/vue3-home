@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+import "./fonts/PinyonScript.css";
 import TheHeader from '@/layout/TheHeader.vue';
 import TheView from '@/layout/TheView.vue';
 import TheFooter from '@/layout/TheFooter.vue';

@@ -5,11 +5,19 @@
 			<div class="d-flex">
 				<div class="ms-auto">
 					<div class="btn-group">
-						<button type="button" class="btn btn-outline-secondary" :class="{'active' : !isActive}" @click="viewType = 'card-list'">
+						<button type="button" 
+							ref="anchor1"
+							class="btn btn-outline-secondary ico-tooltip" 
+							:class="{'active' : !isActive}" 
+							@click="viewType = 'card-list'">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
 						</button>
-						<button type="button" class="btn btn-outline-secondary" :class="{'active' : isActive}" @click="viewType = 'card-thumb'">
+						<button type="button" 
+							ref="anchor2"
+							class="btn btn-outline-secondary ico-tooltip" 
+							:class="{'active' : isActive}" 
+							@click="viewType = 'card-thumb'">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
 						</button>
@@ -42,14 +50,20 @@
 				상세 이미지가 없습니다.
 			</div>
 		</Transition>
+
+		<Teleport to="body">
+			<AppTooltip :isHover="anchorHover" :left="anchorLeft" :top="anchorTop" :direction="anchorDirection" :message="anchorMessage" />
+		</Teleport>
 	</div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
-import WorkItem from '@/components/WorkItem.vue';
 import { useAxios } from '@/composables/useAxios';
+import WorkItem from '@/components/WorkItem.vue';
+import AppTooltip from '@/components/app/AppTooltip.vue';
+import { useTooltip } from '@/composables/useTooltip';
 
 const cardItems = ref(null);
 const isAlert = ref(false);
@@ -62,10 +76,6 @@ const route = useRoute();
 const routeInfo = computed(() => {
 	return route.query.type ?? 'card-thumb';
 });
-
-console.log(route.query);
-
-console.log('routeInfo', routeInfo.value);
 
 const { response, data: items, error, loading } = useAxios(
 	'/works.json', 
@@ -110,6 +120,14 @@ const workItems = (work) => {
 		date: work.date
 	}
 }
+
+const anchor1 = ref(null);
+const anchor2 = ref(null);
+
+const { anchorTop, anchorLeft, anchorDirection, anchorMessage, anchorHover } = useTooltip(
+	{'anchor': anchor1, 'direction': 'top', 'message': '리스트로 보기'},
+	{'anchor': anchor2, 'direction': 'bottom', 'message': '썸네일로 보기'}
+);
 
 const router = useRouter();
 const goDetail = (id, $event) => {

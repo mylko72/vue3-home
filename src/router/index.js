@@ -1,10 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import MainView from '@/views/MainView.vue';
 import AboutView from '@/views/AboutView.vue';
 import PortfolioListView from '@/views/PortfolioListView.vue';
 import PortfolioDetailView from '@/views/PortfolioDetailView.vue';
 import LabView from '@/views/LabView.vue';
 import BookMarkView from '@/views/BookMarkView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const routes = [
 	{
@@ -26,9 +27,6 @@ const routes = [
 		path: '/portfolio/:id',
 		name: 'PortfolioDetailView',
 		component: PortfolioDetailView,
-		beforeEnter: (to, from) => {
-
-    },
 	},
 	{
 		path: '/lab',
@@ -40,14 +38,19 @@ const routes = [
 		name: 'BookMarkView',
 		component: BookMarkView,
 	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'NotFound',
+		component: NotFoundView,
+	},
 ];
 
 const router = createRouter({
-	history: createWebHistory('/'),
+	history: createWebHashHistory(),
 	routes,
-	scrollBehavior (to, from, savedPosition) {
-    return { left:0, top: 0 }
-  },
+	scrollBehavior() {
+		return { left: 0, top: 0 };
+	},
 });
 
 export default router;

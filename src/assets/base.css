@@ -1,6 +1,6 @@
 * { margin:0; padding:0; }
 * {-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-html, body { margin:0px; padding:0px; background-color:#fff; font-family:"Nanum Gothic", 'Dotum', 'serif', sans-serif; font-size:100%; color:#666; line-height:100%; overflow-y:auto;}
+html, body { margin:0px; padding:0px; background-color:#fff; font-family: "Nanum Gothic", 'Dotum', 'serif', sans-serif; font-size:100%; color:#666; line-height:100%; overflow-y:auto;}
 img { max-width:100%; border:0; vertical-align:top; }
 fieldset { border:0px; }
 legend { visibility:hidden; height:0px; width:0px; line-height:0; _text-indent:-10px; font-size:0px; }
@@ -15,8 +15,7 @@ caption, legend,  #skipNavi {width:0; height:0; line-height:0; overflow:hidden; 
 
 a, a:link, a:visited, a:active {color:inherit; text-decoration:none;}
 a:hover {text-decoration:none;}
-a {outline:none;select-dummy:expression(this.hideFocus=true);}
-
+a {outline:none;}
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
@@ -97,6 +96,22 @@ body {
 
 a {text-decoration:none;}
 
+.v-alert {position:fixed; top:30vh; left:50%; min-width:500px; margin-left:-250px; text-align:center}
+.top-btn {position:fixed; bottom:50px; right:20px; z-index:10; display:flex; justify-content:center; width:52px; border-radius:5px; border:1px solid #e5e5e5; background-color:rgba(255,255,255,.8); cursor:pointer}
+.top-btn > button {padding:0; font-size:2rem; color:#666; pointer-events:none;}
+
+.ico-tooltip > i {pointer-events:none;}
+.tooltip-view {display:inline-block;position:absolute;top:-9999px;z-index:100;}
+.tooltip-view .inner:before {position:absolute;content:'';width:8px;height:8px;border-width:1px 0 0 1px;border-style:solid;border-color:#ddd;background-color:#fff;}
+.tooltip-view .inner {max-width:320px;padding:4px 15px;border:1px solid #ddd;border-radius:6px;background:#fff;}
+.tooltip-view .inner > p {margin-bottom:0; font-size:.85rem;}
+.tooltip-view.top.show {margin-top:-5px;}
+.tooltip-view.bottom.show {margin-top:10px;}
+.tooltip-view.top .inner:before {bottom:-5px;left:50%;transform:rotate(-135deg)}
+.tooltip-view.bottom .inner:before {top:-5px;left:50%;transform:rotate(45deg)}
+.tooltip-view.left .inner:before {right:-5px;top:calc(50% - 4px);transform:rotate(135deg)}
+.tooltip-view.right .inner:before {left:-5px;top:calc(50% - 4px);transform:rotate(-45deg)}
+
 header {background:#fff; border-bottom:1px solid #E4E4E4}
 header .navbar-brand {margin-top:10px; margin-right:24px}
 header .navbar-brand h1 {margin-bottom:0; font-family: 'Pinyon Script', cursive !important; font-size:3rem}	
@@ -138,7 +153,7 @@ footer .nav-link {color:#fff}
 .card-thumb .card-text .date {font-size:.7rem}
 /* list type */
 .card-list {flex-direction:row; border:none; background-color:transparent;}
-.card-list .card-img { position:relative; flex:1 50%; width:50%; padding-top:30%;; background-color:#fff; overflow:hidden; cursor:pointer}
+.card-list .card-img { position:relative; flex:1 50%; width:50%; padding-top:30%;; border: 1px solid rgba(0, 0, 0, 0.175); background-color:#fff; overflow:hidden; cursor:pointer}
 .card-list .card-img img {position:absolute; top:0; width:100%;}
 .card-list .card-body {flex:1 1 50%; width:50%; padding-top:0; padding-bottom:0}
 .card-list .card-title, .card-list .card-text {display:flex; align-items:baseline; margin-bottom:0; padding:5px 0; border-bottom:1px solid #ededed; font-size:0.9rem;}
@@ -153,23 +168,30 @@ footer .nav-link {color:#fff}
 .card-default .card-text .text-muted {width:calc(100% - 80px); color:#3c6382 !important}
 .card-default .badge {width:80px; margin-top:3px; margin-right:10px; border:1px solid #60a3bc; background:#60a3bc; font-size:0.8rem; color:rgba(255,255,255,.7)}
 
-.v-alert {position:fixed; top:30vh; left:50%; min-width:500px; margin-left:-250px; text-align:center}
-.top-btn {position:fixed; bottom:50px; right:20px; z-index:10; display:flex; justify-content:center; width:52px; border-radius:5px; border:1px solid #e5e5e5; background-color:rgba(255,255,255,.8); cursor:pointer}
-.top-btn > button {padding:0; font-size:2rem; color:#666; pointer-events:none;}
 /* Portfolio detail */
 .detail-view {position:relative; min-height:calc(100vh - 200px); margin-top:20px; padding:50px 30px; background:#fff; border-radius:10px}
 .detail-view h3 {margin-bottom:0}
+.detail-view .view-tit {display:flex; justify-content:space-between!important; align-items:center; padding-bottom:20px; margin-bottom:30px; border-bottom:1px solid #eee;}
 .detail-view .spinner-border {position:absolute; top:50%; left:50%;}
 .detail-view .prev-btn {margin-right:10px; padding:0; font-size:1.5rem}
+.detail-view .prev-btn > i {pointer-events: none}
 .detail-view .desc-list .list-group-item {display:flex; align-items:baseline; padding:4px 16px; border:none; font-size:.8rem}
 .detail-view .desc-list .list-group-item .badge {width:46px; margin-right:5px; background:#cacaca;}
 .detail-view .desc-list .list-group-item .txt {display:inline-block; width:calc(100% - 46px);}
 .detail-view .desc-list .list-group-item .txt:only-child {width:100%}
 .detail-view .desc-list .list-group-item > a {width:190px;} 
 
+.key-visual {
+	height: 500px;
+	background-image: url(/assets/images/img_winter.jpg);
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
 .my-key-visual {
 	height: 650px;
-	background-image: url(@/assets/images/img_about_01-min.jpg);
+	background-image: url(/assets/images/img_about_01-min.jpg);
 	background-position: 50% 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -184,6 +206,7 @@ footer .nav-link {color:#fff}
 .about-me span.brown {background-color:#ff8B00; font-size:1.2em; color:#fff; }
 .about-me span.maroon {background-color:#85144B; font-size:1.2em; color:#fff; }
 .about-me span.green {background-color:#55c05b; font-size:1.2em; color:#fff; }
+.about-me .profile {padding-left:0}
 .about-me .ico-bicycle {position:absolute; bottom:-110%; right:0; font-size:35em; opacity:.1;}
 
 .my-skill {background-color:#6a89cc; color:#fff; overflow:hidden}
@@ -196,9 +219,11 @@ footer .nav-link {color:#fff}
 
 .my-history {margin-bottom:-80px; background:#82ccdd;}
 .my-history .lists {margin-top:-40px}
+.my-history .ico-history {position:absolute; left:0; font-size:20em; opacity:.05; transform:rotate(-18deg);}
 
 .css-shapes-preview {position: relative; height: 600px; padding: 0px; left: 0px; margin-left:0; -webkit-transform: rotate(0deg) skew(0deg); transform: rotate(0deg) skew(0deg); border-left: 110px solid #FF4136; border-right: 110px solid #FF4136; border-bottom: 40px solid transparent; }
-.css-shapes-preview.fixed {position:fixed; top:0; left:70px}
+.css-shapes-preview.fixed {position:fixed; top:0; left:70px; width:0; z-index:10;}
+.mobile .css-shapes-preview.fixed {width:auto; height:auto}
 .bookmark-menu {position:absolute; left:-90px; top:10px; width:175px; padding-left:0}
 .bookmark-menu > li {padding-left:14px; border-bottom:1px dotted #FF746C; font-size:1rem; line-height:250%; color:#fff; -webkit-transition:all .5s ease;}
 .bookmark-menu > li.sel {border: 0px solid #ff0000; border-radius: 5px; background-color:#bf0000; transform:scale(1.4); }

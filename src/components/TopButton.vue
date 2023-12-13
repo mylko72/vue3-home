@@ -18,8 +18,6 @@ import { useScroll } from "@/composables/useScroll";
 const { pageYOffset, absTop } = useScroll({top: 110});
 
 const show = computed(() => {
-  console.log(pageYOffset.value)
-  console.log(absTop.value)
   return pageYOffset.value > absTop.value
 })
 
