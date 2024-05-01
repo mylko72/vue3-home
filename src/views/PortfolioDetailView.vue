@@ -26,9 +26,15 @@
               <li class="list-group-item"><span class="badge">Project</span> <span class="txt">{{ workItem.project }}</span></li>
               <li class="list-group-item"><span class="badge">Client</span> <span class="txt">{{ workItem.client }}</span></li>
               <li class="list-group-item"><span class="badge">Date</span> <span class="txt">{{ workItem.date }}</span></li>
-              <li class="list-group-item" v-if="workItem.url"><span class="badge">Url</span> <a :href="workItem.url" class="d-inline-block text-truncate" target="_blank">{{ workItem.url }}</a></li>
+              <li class="list-group-item" v-if="workItem.url">
+                <span class="badge">Url</span> 
+                <template v-for="link in workItem.url">
+                  <a :href="link" class="d-inline-block text-truncate text-url" target="_blank"><span class="text-muted">{{ link }}</span></a>
+                </template>                
+                <!-- <a :href="workItem.url" class="d-inline-block text-truncate" target="_blank">{{ workItem.url }}</a> -->
+              </li>
               <li class="list-group-item"><span class="badge">Task</span> <span class="txt">{{ workItem.task }}</span></li>
-              <li class="list-group-item"><span class="txt">{{ workItem.desc }}</span></li>
+              <li class="list-group-item"><span class="txt desc">{{ workItem.desc }}</span></li>
             </ul>
           </div>
         </div>

@@ -8,7 +8,7 @@
 				<h2>About Me</h2>	
 				<div class="row">
 					<div class="col-12 col-sm-8">
-						<p> 2023년 웹관련 경력 <span class="red">20년차</span>이며,<br>
+						<p> 2024년 웹관련 경력 <span class="red">21년차</span>이며,<br>
 								웹디자이너로 시작하여 현재는 <span class="maroon">웹퍼블리셔</span>이자 <span class="blue">UI 개발자</span>이다.<br> <span class="brown">커피</span>... 그리고 <span class="green">자전거</span>를 타며 자연을 느끼는 소소함을 좋아한다.
 						</p>
 						<p>

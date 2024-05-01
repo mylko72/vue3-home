@@ -18,7 +18,9 @@
       </p>
       <p class="card-text" v-if="url">
         <span class="badge" v-if="badge">Url</span> 
-        <a :href="url" class="d-inline-block text-truncate" target="_blank"><span class="text-muted">{{ url }}</span></a>
+        <template v-for="link in url">
+          <a :href="link" class="d-inline-block text-truncate text-url" target="_blank"><span class="text-muted">{{ link }}</span></a>
+        </template>
       </p>
       <p class="card-text" v-if="task">
         <span class="badge" v-if="badge">담당업무</span> 
@@ -47,7 +49,7 @@ const props = defineProps({
     type: String,
   },
   client: String,
-  url: String,
+  url: [String, Array],
   task: String,
   desc: String
 });
