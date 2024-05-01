@@ -2,17 +2,16 @@
   "works":[
     {
       "project": "LG 글로벌 스토리 콘텐츠 제작",
-      "thumbnail": "/assets/images/img_monthlylg_s.avif",
+      "thumbnail": "/assets/images/img_monthlylg_s.jpg",
       "images": [
-        "/assets/images/img_kbank_01.jpg",
-        "/assets/images/img_kbank_02.jpg",
-        "/assets/images/img_kbank_03.jpg"
+        "/assets/images/img_monthlylg_01.jpg",
+        "/assets/images/img_monthlylg_02.jpg"
       ],
       "company": "메이크잇 컴퍼니",
       "client": "LG전자",
       "date": "2024.01 ~ 2024.05",
       "task": "글로벌 스토리 콘텐츠 제작",
-      "desc": "Full Scroll 애니메이션 및 인터렉션",
+      "desc": "Full Scroll 애니메이션 및 인터렉션을 이용한 콘텐츠 제작",
       "url": ["https://www.lg.com/de/monthly-lg/maerz-2024/", "https://www.lg.com/uk/monthly-lg/"]
     },    
     {
