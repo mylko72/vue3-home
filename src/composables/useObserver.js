@@ -1,39 +1,35 @@
-import { ref } from "vue";
-import { onMounted } from "vue";
+import { ref } from 'vue';
 
 export const useObserver = (target, showCallback, hideCallback) => {
-  const isInView = ref(false);
+	let observer;
 
-  const config = ref({
-    root: null,
-    rootMargin: '0px 0px 0px 0px',
-    threshold: 0.1
-  });
+	const config = ref({
+		root: null,
+		rootMargin: '0px 0px 0px 0px',
+		threshold: 0.1,
+	});
 
-  const callback = (entries, observer) => {
-    entries.forEach(entry => {
-        const { intersectionRatio: currentRatio, isIntersecting } = entry;
+	const callback = entries => {
+		entries.forEach(entry => {
+			const { isIntersecting } = entry;
 
-        if(isIntersecting){
-          if(showCallback && typeof showCallback == 'function'){
-            showCallback(entry.target);
-          }
-          isInView.value = true;
-        } else {                     
-          if(hideCallback && typeof hideCallback == 'function'){
-            hideCallback(entry.target);
-          }
-          isInView.value = false;
-        }
-    });
-  }
+			if (isIntersecting) {
+				if (showCallback && typeof showCallback == 'function') {
+					showCallback();
+				}
+			} else {
+				if (hideCallback && typeof hideCallback == 'function') {
+					hideCallback();
+				}
+			}
+		});
+	};
 
-  if ("IntersectionObserver" in window) {
-    let observer = new IntersectionObserver(callback, config.value);
-    observer.observe(target);
-  }
+	if ('IntersectionObserver' in window) {
+		observer = new IntersectionObserver(callback, config.value);
+	}
 
-  return {
-    isInView
-  }
-}
+	return {
+		observer,
+	};
+};

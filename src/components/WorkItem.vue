@@ -66,19 +66,25 @@ const viewType = computed(() => {
 });
 
 const cardRef = ref(null);
+const showFn = () => {
+  isVisible.value = true;
+}
+const hideFn = () => {
+  isVisible.value = false;
+}
+
+const { observer } = useObserver(cardRef.value, showFn, hideFn);
 
 onMounted(() => {
   const { effect } = cardRef.value.dataset;
-  !!effect && cardRef.value.classList.add(effect);
 
-  useObserver(cardRef.value, (target) => {
-    target.classList.add('show-in');
-    isVisible.value = true;
-  });
-
+  if(!!effect){
+    cardRef.value.classList.add(effect);
+    observer.observe(cardRef.value);
+  }
+  
   console.log('mounted...');
 })
-
 </script>
 
 <style scoped>
