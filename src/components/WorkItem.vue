@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="viewType">
+  <div class="card" :class="viewType" ref="cardRef" data-effect="slide-up">
     <slot name="card-header" />
     <slot name="card-image" />
 
@@ -36,7 +36,9 @@
 
 <script setup>
 import { ref } from "@vue/reactivity";
+import { onMounted } from 'vue'
 import { computed } from "@vue/runtime-core";
+import { useObserver } from '@/composables/useObserver';
 
 const props = defineProps({
   view: String,
@@ -54,11 +56,52 @@ const props = defineProps({
   desc: String
 });
 
+const isVisible = ref(false);
+
 const viewType = computed(() => {
-  return props.view;
+  return [
+    props.view,
+    {'show-in': isVisible.value}
+  ]
 });
+
+const cardRef = ref(null);
+
+onMounted(() => {
+  const { effect } = cardRef.value.dataset;
+  !!effect && cardRef.value.classList.add(effect);
+
+  useObserver(cardRef.value, (target) => {
+    target.classList.add('show-in');
+    isVisible.value = true;
+  });
+
+  console.log('mounted...');
+})
+
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+[data-effect] {
+    opacity: 0;
+    transition: all .8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transform-style: preserve-3d;
+    will-change: transform,opacity,filter
+}
+.show-in {
+    opacity: 1 !important;
+    transform: none !important
+}
+.slide-up {
+    transform: translate(0, 2.6041666667vw)
+}
+.slide-down {
+    transform: translate(0, -2.6041666667vw)
+}
+.slide-right {
+    transform: translate(-5.2083333333vw, 0)
+}
+.slide-left {
+    transform: translate(5.2083333333vw, 0)
+}
 </style>
