@@ -22,9 +22,9 @@
           <a :href="link" class="d-inline-block text-truncate text-url" target="_blank"><span class="text-muted">{{ link }}</span></a>
         </template>
       </p>
-      <p class="card-text" v-if="task">
-        <span class="badge" v-if="badge">담당업무</span> 
-        <span class="text-muted">{{ task }}</span>
+      <p class="card-text flex-nowrap" v-if="task">
+        <span class="badge" v-if="badge">{{ viewType == 'card-default' ? "담당업무" : 'Task' }}</span> 
+        <span class="d-block text-truncate text-muted">{{ task }}</span>
       </p>
       <p class="card-text" v-if="desc">
         <span class="badge" v-if="badge">수행내용</span> 

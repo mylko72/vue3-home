@@ -14,6 +14,7 @@
 							:project="card.project"
 							:client="card.client"
 							:url="card.url"
+							:task="card.task"
 							:date="card.date">
 							<template #card-image>
 								<div class="card-img">

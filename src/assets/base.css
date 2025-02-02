@@ -128,7 +128,8 @@ footer .nav-link {color:#fff}
 .my-work {position:relative; min-height:50vh; padding-top:24px; padding-bottom:60px;}
 .my-work h2 {margin-bottom:24px}
 .my-work .spinner-border {position:absolute; bottom:40%; left:50%;}
-.my-work .card-list .card-title, .my-work .card-list .card-text {flex-wrap: wrap}
+.my-work .card-list .card-title {flex-wrap: nowrap} 
+.my-work .card-list .card-text {flex-wrap: wrap}
 .my-work .card-list .badge {flex: 0 0 46px;}
 .my-work .card-list .card-title .text-truncate {width: calc(100% - 51px)}
 .my-work .card-list .card-text .text-url {width: calc(100% - 51px)}
@@ -148,7 +149,8 @@ footer .nav-link {color:#fff}
 /* Portfolio list */
 .work-lists {position:relative; min-height:calc(100vh - 200px); margin:0 auto}
 .work-lists .spinner-border {position:absolute; top:40%; left:50%;}
-.work-lists .card-list .card-title, .work-lists .card-list .card-text {flex-wrap: wrap}
+.work-lists .card-list .card-title {flex-wrap: nowrap;}
+.work-lists .card-list .card-text {flex-wrap: wrap}
 .work-lists .card-list .badge {flex: 0 0 46px;}
 .work-lists .card-list .card-text .text-url {width: calc(100% - 51px)}
 .work-lists .card-list .card-text .text-url + .text-url {width:100%; padding-left: 51px;}
@@ -157,13 +159,13 @@ footer .nav-link {color:#fff}
 /* thumbnail type */
 .card-thumb {cursor:pointer}
 .card-thumb .card-img {position:relative; padding-top:calc((135*100%) / 220); overflow:hidden}
-.card-thumb .card-img img {position:absolute; top:0; width:100%;}
+.card-thumb .card-img img {position:absolute; left: 0; right: 0; top:0; bottom: 0; width:100%; height: 100%; object-fit: contain;}
 .card-thumb .card-title {margin-bottom:0; font-size:.9rem}
 .card-thumb .card-text .date {font-size:.7rem}
 /* list type */
 .card-list {flex-direction:row; border:none; background-color:transparent;}
 .card-list .card-img { position:relative; flex:1 50%; width:50%; padding-top:30%;; border: 1px solid rgba(0, 0, 0, 0.175); background-color:#fff; overflow:hidden; cursor:pointer}
-.card-list .card-img img {position:absolute; top:0; width:100%;}
+.card-list .card-img img {position:absolute; left: 0; right: 0; top:0; bottom: 0; width:100%; height: 100%; object-fit: contain;}
 .card-list .card-body {flex:1 1 50%; width:50%; padding-top:0; padding-bottom:0}
 .card-list .card-title, .card-list .card-text {display:flex; align-items:baseline; margin-bottom:0; padding:5px 0; border-bottom:1px solid #ededed; font-size:0.9rem;}
 .card-list .badge {width:46px; margin-right:5px; background:#cacaca; font-size:0.6rem;}

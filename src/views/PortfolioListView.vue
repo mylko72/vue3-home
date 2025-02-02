@@ -8,7 +8,7 @@
 						<button type="button" 
 							ref="anchor1"
 							class="btn btn-outline-secondary ico-tooltip" 
-							:class="{'active' : !isActive}" 
+							:class="{'active' : isActive}" 
 							@click="viewType = 'card-list'">
 							<i class="bi bi-card-list"></i>
 							<span class="visually-hidden">리스트</span>
@@ -16,7 +16,7 @@
 						<button type="button" 
 							ref="anchor2"
 							class="btn btn-outline-secondary ico-tooltip" 
-							:class="{'active' : isActive}" 
+							:class="{'active' : !isActive}" 
 							@click="viewType = 'card-thumb'">
 							<i class="bi bi-card-image"></i>
 							<span class="visually-hidden">썸네일</span>
@@ -74,7 +74,7 @@ const listClass = ref(['row-cols-1', 'row-cols-lg-2']);
 const route = useRoute();
 
 const routeInfo = computed(() => {
-	return route.query.type ?? 'card-thumb';
+	return route.query.type ?? 'card-list';
 });
 
 const { response, data: items, error, loading } = useAxios(
@@ -85,7 +85,7 @@ const { response, data: items, error, loading } = useAxios(
 			console.log('data success...');
 			cardItems.value = items.value.works;
 			defaultType.value = routeInfo.value ? routeInfo.value : 'card-thumb';
-			isActive.value = routeInfo.value === 'card-list' ? false : true;
+			isActive.value = routeInfo.value === 'card-list' ? true : false;
 		}
 	}
 );
@@ -110,14 +110,16 @@ const workItems = (work) => {
 	{
 		view: 'card-thumb',  
 		project: work.project, 
-		date: work.date
+		date: work.date,
+		task: work.task,
 	} : {
 		view: 'card-list',  
 		badge: true,
 		project: work.project,
 		client: work.client,
 		url: work.url,
-		date: work.date
+		date: work.date,
+		task: work.task,
 	}
 }
 
